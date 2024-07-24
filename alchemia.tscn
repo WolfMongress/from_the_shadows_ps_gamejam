@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqwdrmf7pnjwg"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_xrqg0"]
+[ext_resource type="Script" path="res://Scripts/attack_button.gd" id="2_q8erl"]
+[ext_resource type="Script" path="res://Scripts/items_button.gd" id="3_yjrno"]
+[ext_resource type="Script" path="res://Scripts/shadows_button.gd" id="4_h1o3e"]
+[ext_resource type="Script" path="res://Scripts/shadows_submenu.gd" id="5_horqg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cwv0t"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ro64n"]
+
+[node name="Alchemia" type="StaticBody2D"]
+position = Vector2(500, 500)
+script = ExtResource("1_xrqg0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5, 5)
+shape = SubResource("CapsuleShape2D_cwv0t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.499999, -5.72205e-06)
+scale = Vector2(101, 150)
+texture = SubResource("PlaceholderTexture2D_ro64n")
+
+[node name="Primary UI" type="VBoxContainer" parent="."]
+visible = false
+offset_left = -45.0
+offset_top = -217.0
+offset_right = 52.0
+offset_bottom = -109.0
+
+[node name="Attack" type="Button" parent="Primary UI"]
+layout_mode = 2
+text = "Attack"
+script = ExtResource("2_q8erl")
+
+[node name="Items" type="Button" parent="Primary UI"]
+layout_mode = 2
+text = "Items"
+script = ExtResource("3_yjrno")
+
+[node name="Alchemy" type="Button" parent="Primary UI"]
+layout_mode = 2
+toggle_mode = true
+text = "Alchemy"
+script = ExtResource("4_h1o3e")
+
+[node name="Alchemy Submenu" type="VBoxContainer" parent="Primary UI/Alchemy"]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_top = 1.0
+offset_right = 180.0
+offset_bottom = 102.0
+script = ExtResource("5_horqg")
+
+[node name="Partner" type="Button" parent="Primary UI/Alchemy/Alchemy Submenu"]
+layout_mode = 2
+text = "Partner"
+
+[node name="Items" type="Button" parent="Primary UI/Alchemy/Alchemy Submenu"]
+layout_mode = 2
+text = "Items
+"
+
+[node name="Alchemia" type="Button" parent="Primary UI/Alchemy/Alchemy Submenu"]
+layout_mode = 2
+text = "Alchemia"
+
+[connection signal="partner_turn" from="." to="Primary UI" method="_on_alchemia_partner_turn"]
+[connection signal="ui_appear" from="." to="Primary UI" method="_on_alchemia_ui_appear"]
+[connection signal="pressed" from="Primary UI/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="Primary UI/Alchemy" to="Primary UI/Attack" method="_on_shadows_pressed"]
+[connection signal="pressed" from="Primary UI/Alchemy" to="Primary UI/Items" method="_on_shadows_pressed"]
+[connection signal="pressed" from="Primary UI/Alchemy" to="Primary UI/Alchemy/Alchemy Submenu" method="_on_shadows_pressed"]
+[connection signal="pressed" from="Primary UI/Alchemy/Alchemy Submenu/Partner" to="." method="_on_partner_pressed"]
+[connection signal="pressed" from="Primary UI/Alchemy/Alchemy Submenu/Items" to="." method="_on_items_pressed"]

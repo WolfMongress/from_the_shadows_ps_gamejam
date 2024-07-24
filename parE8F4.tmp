@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgcl5q3337mxs"]
+
+[ext_resource type="SpriteFrames" uid="uid://bj2nf1yhsg570" path="res://assets/partner_assets/shadow_cat_front_half.gif-d9d774eca143fca060bdd51ace64024c.tres" id="1_778fp"]
+[ext_resource type="Script" path="res://partner.gd" id="1_ocv3y"]
+[ext_resource type="SpriteFrames" uid="uid://dhhntyrnuv4vv" path="res://assets/partner_assets/shadow_cat_back_half.gif" id="2_5stjc"]
+
+[node name="partner" type="StaticBody2D"]
+position = Vector2(245, 119)
+script = ExtResource("1_ocv3y")
+metadata/_edit_group_ = true
+
+[node name="front_half" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_778fp")
+animation = &"cat_front_half_idle"
+
+[node name="back_half" type="AnimatedSprite2D" parent="."]
+position = Vector2(-32, 1)
+sprite_frames = ExtResource("2_5stjc")
+animation = &"cat_back_half_idle"

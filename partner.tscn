@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgcl5q3337mxs"]
+
+[ext_resource type="Script" path="res://Scripts/partner.gd" id="1_4g3yd"]
+
+[node name="partner" type="StaticBody2D"]
+position = Vector2(280, 138)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_4g3yd")
+metadata/_edit_group_ = true
+
+[node name="front_half" type="AnimatedSprite2D" parent="."]
+
+[node name="back_half" type="AnimatedSprite2D" parent="."]
+position = Vector2(-32, 1)
+
+[node name="Partner UI" type="VBoxContainer" parent="."]
+visible = false
+offset_left = -68.0
+offset_top = -360.0
+offset_right = 46.0
+offset_bottom = -154.0
+
+[node name="Ultra Weaken" type="Button" parent="Partner UI"]
+visible = false
+layout_mode = 2
+text = "Ultra Weaken"
+
+[node name="Weaken" type="Button" parent="Partner UI"]
+visible = false
+layout_mode = 2
+text = "Weaken"
+
+[node name="Ultra Shield" type="Button" parent="Partner UI"]
+visible = false
+layout_mode = 2
+text = "Ultra Shield"
+
+[node name="Shield" type="Button" parent="Partner UI"]
+visible = false
+layout_mode = 2
+text = "Shield"
+
+[node name="Ultra Heal" type="Button" parent="Partner UI"]
+visible = false
+layout_mode = 2
+text = "Ultra Heal"
+
+[node name="Heal" type="Button" parent="Partner UI"]
+visible = false
+layout_mode = 2
+text = "Heal"

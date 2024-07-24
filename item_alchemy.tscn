@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://c030d2k86evn6"]
+
+[ext_resource type="Script" path="res://ingredient.gd" id="1_qxrsq"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wpxek"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hr4d7"]
+radius = 24.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cf67s"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yt1wt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1icgd"]
+size = Vector2(1152, 68)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qr0u2"]
+
+[node name="item_alchemy" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(593, 396)
+scale = Vector2(5.374, 5.941)
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+scale = Vector2(1, 1.00001)
+polygon = PackedVector2Array(-2, -16, -2, -10, -16, 12, 16, 12, 2, -10, 2, -16)
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(-0.279119, -1.85154)
+scale = Vector2(31.8199, 28.2781)
+texture = SubResource("PlaceholderTexture2D_wpxek")
+
+[node name="Ingredient" type="RigidBody2D" parent="."]
+position = Vector2(225, 546)
+input_pickable = true
+script = ExtResource("1_qxrsq")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ingredient"]
+shape = SubResource("CircleShape2D_hr4d7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ingredient"]
+position = Vector2(0.499997, -1.14441e-05)
+scale = Vector2(49, 48)
+texture = SubResource("PlaceholderTexture2D_cf67s")
+
+[node name="Ingredient2" type="RigidBody2D" parent="."]
+position = Vector2(379, 544)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ingredient2"]
+shape = SubResource("CircleShape2D_hr4d7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ingredient2"]
+position = Vector2(1.83582e-05, 1.09673e-05)
+scale = Vector2(48, 48.0001)
+texture = SubResource("PlaceholderTexture2D_yt1wt")
+
+[node name="Ingredient3" type="RigidBody2D" parent="."]
+position = Vector2(586, 541)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ingredient3"]
+shape = SubResource("CircleShape2D_hr4d7")
+
+[node name="Ingredient4" type="RigidBody2D" parent="."]
+position = Vector2(745, 540)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ingredient4"]
+shape = SubResource("CircleShape2D_hr4d7")
+
+[node name="Ingredient5" type="RigidBody2D" parent="."]
+position = Vector2(963, 541)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ingredient5"]
+shape = SubResource("CircleShape2D_hr4d7")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(13, 590)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(563, 24)
+shape = SubResource("RectangleShape2D_1icgd")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(563, 24)
+scale = Vector2(1152, 68)
+texture = SubResource("PlaceholderTexture2D_qr0u2")
+
+[connection signal="mouse_entered" from="Ingredient" to="Ingredient" method="_on_mouse_entered"]

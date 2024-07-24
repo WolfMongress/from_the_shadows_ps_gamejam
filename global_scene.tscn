@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs2byonsar4m7"]
+
+[ext_resource type="PackedScene" uid="uid://c83ev5p2gx8np" path="res://battle_scene.tscn" id="1_d0kh4"]
+[ext_resource type="PackedScene" uid="uid://c7krb3fe2qkik" path="res://partner_shadowplay.tscn" id="2_hupky"]
+
+[node name="Global Scene" type="Node"]
+
+[node name="battle_scene" parent="." instance=ExtResource("1_d0kh4")]
+
+[node name="partner_shadowplay" parent="." instance=ExtResource("2_hupky")]
+visible = false

@@ -1,0 +1,30 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="from_the_shadows"
+run/main_scene="res://battle_scene.tscn"
+config/features=PackedStringArray("4.2", "GL Compatibility")
+
+[editor_plugins]
+
+enabled=PackedStringArray()
+
+[importer_defaults]
+
+import_gif_to_sprite_frames={
+"frames_per_second": 30
+}
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
