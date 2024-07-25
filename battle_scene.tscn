@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c83ev5p2gx8np"]
+[gd_scene load_steps=8 format=3 uid="uid://c83ev5p2gx8np"]
 
 [ext_resource type="PackedScene" uid="uid://csweymfv4kvk1" path="res://boss.tscn" id="1_gyqp6"]
+[ext_resource type="Script" path="res://battle_scene.gd" id="1_ohibv"]
 [ext_resource type="PackedScene" uid="uid://dqwdrmf7pnjwg" path="res://alchemia.tscn" id="2_b3pwu"]
 [ext_resource type="PackedScene" uid="uid://bgcl5q3337mxs" path="res://partner.tscn" id="4_85tkj"]
 
@@ -15,12 +16,15 @@ point_count = 4
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8xk3i"]
 
 [node name="battle_scene" type="Node2D"]
+script = ExtResource("1_ohibv")
 
 [node name="boss" parent="." instance=ExtResource("1_gyqp6")]
 position = Vector2(1046, 468)
 
-[node name="Alchemia" parent="." instance=ExtResource("2_b3pwu")]
+[node name="Alchemia" parent="." node_paths=PackedStringArray("partner", "boss") instance=ExtResource("2_b3pwu")]
 position = Vector2(257, 506)
+partner = NodePath("../partner")
+boss = NodePath("../boss")
 
 [node name="partner" parent="." instance=ExtResource("4_85tkj")]
 position = Vector2(135, 554)
