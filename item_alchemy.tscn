@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://egljyw1183wh"]
+[gd_scene load_steps=16 format=3 uid="uid://egljyw1183wh"]
 
 [ext_resource type="Script" path="res://big_potion_bottle.gd" id="1_gxsbl"]
 [ext_resource type="Script" path="res://ingredient.gd" id="1_qxrsq"]
@@ -10,7 +10,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_hr4d7"]
 radius = 24.1868
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yt1wt"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ugy7d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y31p6"]
+radius = 23.7697
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vuko1"]
 
@@ -53,7 +56,6 @@ texture = SubResource("PlaceholderTexture2D_wpxek")
 [node name="Goldenseal" type="RigidBody2D" parent="."]
 position = Vector2(225, 546)
 input_pickable = true
-can_sleep = false
 script = ExtResource("1_qxrsq")
 metadata/_edit_group_ = true
 
@@ -66,18 +68,19 @@ texture = SubResource("PlaceholderTexture2D_cf67s")
 shape = SubResource("CircleShape2D_hr4d7")
 
 [node name="Armoranth" type="RigidBody2D" parent="."]
-position = Vector2(379, 544)
+position = Vector2(424, 555)
 input_pickable = true
 script = ExtResource("1_qxrsq")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Armoranth"]
-shape = SubResource("CircleShape2D_hr4d7")
-
 [node name="Sprite2D" type="Sprite2D" parent="Armoranth"]
-position = Vector2(3.05176e-05, 0)
-scale = Vector2(48, 48.0001)
-texture = SubResource("PlaceholderTexture2D_yt1wt")
+position = Vector2(14.5, -14)
+scale = Vector2(49, 48)
+texture = SubResource("PlaceholderTexture2D_ugy7d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Armoranth"]
+position = Vector2(14, -14)
+shape = SubResource("CircleShape2D_y31p6")
 
 [node name="Stinging Nettle" type="RigidBody2D" parent="."]
 position = Vector2(593, 317)
@@ -160,19 +163,17 @@ position = Vector2(-31.0128, -41.3615)
 shape = SubResource("RectangleShape2D_4ioc0")
 
 [node name="brew_button" type="Button" parent="."]
-visible = false
 offset_left = 571.0
 offset_top = 476.0
 offset_right = 619.0
 offset_bottom = 507.0
 text = "Brew"
 
-[node name="Armoranth2" type="RigidBody2D" parent="."]
-
-[connection signal="area_shape_entered" from="Area2D" to="Area2D" method="_on_area_shape_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
 [connection signal="input_event" from="Goldenseal" to="Goldenseal" method="_on_input_event"]
 [connection signal="input_event" from="Armoranth" to="Armoranth" method="_on_input_event"]
 [connection signal="input_event" from="Stinging Nettle" to="Stinging Nettle" method="_on_input_event"]
 [connection signal="input_event" from="Shadow" to="Shadow" method="_on_input_event"]
 [connection signal="input_event" from="Star Fragment" to="Star Fragment" method="_on_input_event"]
+[connection signal="pressed" from="brew_button" to="Area2D" method="_on_brew_button_pressed"]

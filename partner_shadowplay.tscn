@@ -1,17 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7krb3fe2qkik"]
+[gd_scene load_steps=2 format=3 uid="uid://c7krb3fe2qkik"]
 
-[ext_resource type="PackedScene" uid="uid://dqwdrmf7pnjwg" path="res://alchemia.tscn" id="1_fq2bq"]
 [ext_resource type="Script" path="res://partner_shadowplay.gd" id="1_tpxlu"]
-[ext_resource type="PackedScene" uid="uid://bgcl5q3337mxs" path="res://partner.tscn" id="3_bhbey"]
 
 [node name="partner_shadowplay" type="Node2D"]
 script = ExtResource("1_tpxlu")
-
-[node name="Alchemia" parent="." instance=ExtResource("1_fq2bq")]
-visible = false
-
-[node name="partner" parent="." instance=ExtResource("3_bhbey")]
-visible = false
 
 [node name="back_half_buttons" type="BoxContainer" parent="."]
 offset_left = 125.0
@@ -76,15 +68,6 @@ text = "OK"
 flat = true
 metadata/_edit_use_anchors_ = true
 
-[connection signal="bear_bear_selection" from="." to="Alchemia" method="_on_partner_shadowplay_bear_bear_selection"]
-[connection signal="bear_cat_selection" from="." to="Alchemia" method="_on_partner_shadowplay_bear_cat_selection"]
-[connection signal="bear_elephant_selection" from="." to="Alchemia" method="_on_partner_shadowplay_bear_elephant_selection"]
-[connection signal="cat_bear_selection" from="." to="Alchemia" method="_on_partner_shadowplay_cat_bear_selection"]
-[connection signal="cat_cat_selection" from="." to="Alchemia" method="_on_partner_shadowplay_cat_cat_selection"]
-[connection signal="cat_elephant_selection" from="." to="Alchemia" method="_on_partner_shadowplay_cat_elephant_selection"]
-[connection signal="elephant_bear_selection" from="." to="Alchemia" method="_on_partner_shadowplay_elephant_bear_selection"]
-[connection signal="elephant_cat_selection" from="." to="Alchemia" method="_on_partner_shadowplay_elephant_cat_selection"]
-[connection signal="elephant_elephant_selection" from="." to="Alchemia" method="_on_partner_shadowplay_elephant_elephant_selection"]
 [connection signal="pressed" from="back_half_buttons/bear_button_back" to="." method="_on_bear_button_back_pressed"]
 [connection signal="pressed" from="back_half_buttons/elephant_button_back" to="." method="_on_elephant_button_back_pressed"]
 [connection signal="pressed" from="back_half_buttons/cat_button_back" to="." method="_on_cat_button_back_pressed"]

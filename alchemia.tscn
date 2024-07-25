@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqwdrmf7pnjwg"]
+[gd_scene load_steps=10 format=3 uid="uid://dqwdrmf7pnjwg"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_dfq2s"]
 [ext_resource type="Script" path="res://attack_button.gd" id="2_85lj6"]
 [ext_resource type="Script" path="res://items_button.gd" id="3_ggpbo"]
+[ext_resource type="Script" path="res://item_inventory.gd" id="4_aarr5"]
 [ext_resource type="Script" path="res://shadows_button.gd" id="4_h7vof"]
 [ext_resource type="Script" path="res://shadows_submenu.gd" id="5_uc0xf"]
 
@@ -52,6 +53,14 @@ layout_mode = 2
 text = "Items"
 script = ExtResource("3_ggpbo")
 
+[node name="ItemList" type="ItemList" parent="Primary UI/Items"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 8.0
+offset_right = 166.0
+offset_bottom = 82.0
+script = ExtResource("4_aarr5")
+
 [node name="Alchemy" type="Button" parent="Primary UI"]
 layout_mode = 2
 toggle_mode = true
@@ -86,6 +95,9 @@ text = "Alchemia"
 [connection signal="transformation_submenu_active" from="." to="Primary UI/Alchemy" method="_on_alchemia_transformation_submenu_active"]
 [connection signal="ui_appear" from="." to="Primary UI" method="_on_alchemia_ui_appear"]
 [connection signal="pressed" from="Primary UI/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="Primary UI/Items" to="Primary UI/Attack" method="_on_items_pressed"]
+[connection signal="pressed" from="Primary UI/Items" to="Primary UI/Alchemy" method="_on_items_pressed"]
+[connection signal="item_activated" from="Primary UI/Items/ItemList" to="Primary UI/Items/ItemList" method="_on_item_activated"]
 [connection signal="pressed" from="Primary UI/Alchemy" to="Primary UI/Attack" method="_on_shadows_pressed"]
 [connection signal="pressed" from="Primary UI/Alchemy" to="Primary UI/Items" method="_on_shadows_pressed"]
 [connection signal="pressed" from="Primary UI/Alchemy" to="Primary UI/Alchemy/Alchemy Submenu" method="_on_shadows_pressed"]

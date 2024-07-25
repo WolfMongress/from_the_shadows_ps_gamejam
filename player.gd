@@ -23,6 +23,7 @@ func _ready():
 		$"Primary UI".show()
 	elif Global.player_turn == false:
 		$"Primary UI".hide()
+		partner_turn.emit()
 
 func _on_placeholderboss_player_turn():
 		$"Primary UI".show()
@@ -42,51 +43,6 @@ func _on_partner_pressed():
 	$"Primary UI".hide()
 	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file("res://partner_shadowplay.tscn")
-
-func _on_partner_shadowplay_bear_bear_selection():
-	get_tree().change_scene_to_file("res://battle_scene.tscn")
-	bear_bear.emit()
-	partner_turn.emit()
-
-func _on_partner_shadowplay_bear_cat_selection():
-	get_tree().change_scene_to_file("res://battle_scene.tscn")
-	bear_cat.emit()
-	partner_turn.emit()
-
-func _on_partner_shadowplay_bear_elephant_selection():
-	get_tree().change_scene_to_file("res://battle_scene.tscn")
-	bear_elephant.emit()
-	partner_turn.emit()
-
-func _on_partner_shadowplay_cat_bear_selection():
-	get_tree().change_scene_to_file("res://battle_scene.tscn")
-	cat_bear.emit()
-	partner_turn.emit()
-
-func _on_partner_shadowplay_cat_cat_selection():
-	get_tree().change_scene_to_file("res://battle_scene.tscn")
-	cat_cat.emit()
-	partner_turn.emit()
-
-func _on_partner_shadowplay_cat_elephant_selection():
-	get_tree().change_scene_to_file("res://battle_scene.tscn")
-	cat_elephant.emit()
-	partner_turn.emit()
-
-func _on_partner_shadowplay_elephant_bear_selection():
-	get_tree().change_scene_to_file("res://battle_scene.tscn")
-	elephant_bear.emit()
-	partner_turn.emit()
-
-func _on_partner_shadowplay_elephant_cat_selection():
-	get_tree().change_scene_to_file("res://battle_scene.tscn")
-	elephant_cat.emit()
-	partner_turn.emit()
-
-func _on_partner_shadowplay_elephant_elephant_selection():
-	get_tree().change_scene_to_file("res://battle_scene.tscn")
-	elephant_elephant.emit()
-	partner_turn.emit()
 
 #code doing with items
 func _on_items_pressed():

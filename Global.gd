@@ -25,3 +25,13 @@ var cat_elephant = false
 var elephant_bear = false
 var elephant_cat = false
 var elephant_elephant = false
+
+var heal_potion = false
+var weakness_potion = false
+var defense_potion = false
+
+var goldenseal_amount = 5
+var armoranth_amount = 5
+var stinging_nettle_amount = 5
+var shadow_crystal_amount = 5
+var star_fragment_amount = 5
