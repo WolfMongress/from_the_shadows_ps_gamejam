@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://csweymfv4kvk1"]
 
-[ext_resource type="Script" path="res://placeholderboss.gd" id="1_tohjs"]
-[ext_resource type="Script" path="res://boss_health_bar.gd" id="2_8hfc1"]
+[ext_resource type="Script" path="res://placeholderboss.gd" id="1_uvc2m"]
+[ext_resource type="Script" path="res://boss_health_bar.gd" id="2_webs8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4itqp"]
 
@@ -9,7 +9,7 @@
 
 [node name="boss" type="Area2D"]
 position = Vector2(529, 313)
-script = ExtResource("1_tohjs")
+script = ExtResource("1_uvc2m")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -29,6 +29,6 @@ offset_right = 76.0
 offset_bottom = 158.0
 max_value = 500.0
 value = 500.0
-script = ExtResource("2_8hfc1")
+script = ExtResource("2_webs8")
 
 [connection signal="boss_health_bar" from="." to="ProgressBar" method="_on_placeholderboss_boss_health_bar"]

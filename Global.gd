@@ -8,7 +8,7 @@ var beast2 = false
 var beast3 = false
 
 var transformed = false
-var first_turn = true
+var player_turn = true
 
 var three_turn_countdown = 0
 

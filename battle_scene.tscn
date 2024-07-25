@@ -21,10 +21,8 @@ script = ExtResource("1_ohibv")
 [node name="boss" parent="." instance=ExtResource("1_gyqp6")]
 position = Vector2(1046, 468)
 
-[node name="Alchemia" parent="." node_paths=PackedStringArray("partner", "boss") instance=ExtResource("2_b3pwu")]
+[node name="Alchemia" parent="." instance=ExtResource("2_b3pwu")]
 position = Vector2(257, 506)
-partner = NodePath("../partner")
-boss = NodePath("../boss")
 
 [node name="partner" parent="." instance=ExtResource("4_85tkj")]
 position = Vector2(135, 554)

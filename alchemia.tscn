@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://dqwdrmf7pnjwg"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_xrqg0"]
-[ext_resource type="Script" path="res://attack_button.gd" id="2_q8erl"]
-[ext_resource type="Script" path="res://items_button.gd" id="3_yjrno"]
-[ext_resource type="Script" path="res://shadows_button.gd" id="4_h1o3e"]
-[ext_resource type="Script" path="res://shadows_submenu.gd" id="5_horqg"]
+[ext_resource type="Script" path="res://player.gd" id="1_dfq2s"]
+[ext_resource type="Script" path="res://attack_button.gd" id="2_85lj6"]
+[ext_resource type="Script" path="res://items_button.gd" id="3_ggpbo"]
+[ext_resource type="Script" path="res://shadows_button.gd" id="4_h7vof"]
+[ext_resource type="Script" path="res://shadows_submenu.gd" id="5_uc0xf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cwv0t"]
 
@@ -19,7 +19,7 @@ func _on_alchemia_transformation_submenu_active():
 
 [node name="Alchemia" type="StaticBody2D"]
 position = Vector2(500, 500)
-script = ExtResource("1_xrqg0")
+script = ExtResource("1_dfq2s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(5, 5)
@@ -31,7 +31,6 @@ scale = Vector2(101, 150)
 texture = SubResource("PlaceholderTexture2D_ro64n")
 
 [node name="Primary UI" type="VBoxContainer" parent="."]
-visible = false
 offset_left = -45.0
 offset_top = -217.0
 offset_right = 52.0
@@ -40,7 +39,7 @@ offset_bottom = -109.0
 [node name="Attack" type="Button" parent="Primary UI"]
 layout_mode = 2
 text = "Attack"
-script = ExtResource("2_q8erl")
+script = ExtResource("2_85lj6")
 
 [node name="Transformation Submenu" type="VBoxContainer" parent="Primary UI/Attack"]
 layout_mode = 0
@@ -51,13 +50,13 @@ script = SubResource("GDScript_crgs2")
 [node name="Items" type="Button" parent="Primary UI"]
 layout_mode = 2
 text = "Items"
-script = ExtResource("3_yjrno")
+script = ExtResource("3_ggpbo")
 
 [node name="Alchemy" type="Button" parent="Primary UI"]
 layout_mode = 2
 toggle_mode = true
 text = "Alchemy"
-script = ExtResource("4_h1o3e")
+script = ExtResource("4_h7vof")
 
 [node name="Alchemy Submenu" type="VBoxContainer" parent="Primary UI/Alchemy"]
 visible = false
@@ -66,7 +65,7 @@ offset_left = 100.0
 offset_top = 1.0
 offset_right = 180.0
 offset_bottom = 102.0
-script = ExtResource("5_horqg")
+script = ExtResource("5_uc0xf")
 
 [node name="Partner" type="Button" parent="Primary UI/Alchemy/Alchemy Submenu"]
 layout_mode = 2

@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://bgcl5q3337mxs"]
 
-[ext_resource type="Script" path="res://partner.gd" id="1_4g3yd"]
+[ext_resource type="Script" path="res://partner.gd" id="1_750ri"]
 
 [node name="partner" type="StaticBody2D"]
 position = Vector2(280, 138)
 scale = Vector2(0.5, 0.5)
-script = ExtResource("1_4g3yd")
+script = ExtResource("1_750ri")
 metadata/_edit_group_ = true
 
 [node name="front_half" type="AnimatedSprite2D" parent="."]

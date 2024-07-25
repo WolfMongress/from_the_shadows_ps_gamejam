@@ -19,12 +19,3 @@ func _on_input_event(x, event, y):
 			linear_velocity = Vector2(0, 0)
 			lifted = not lifted
 			print(lifted)
-
-#func _unhandled_input(event):
-	#if event is InputEventMouseButton and not event.pressed:
-		#pass
-		##print("test")
-	#if lifted and event is InputEventMouseMotion:
-		#pass
-		##print("test2")
-		##position = get_viewport().get_mouse_position()
