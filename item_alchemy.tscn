@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c030d2k86evn6"]
 
-[ext_resource type="Script" path="res://ingredient.gd" id="1_qxrsq"]
+[ext_resource type="Script" path="res://Scripts/ingredient.gd" id="1_qxrsq"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wpxek"]
 
@@ -35,6 +35,7 @@ texture = SubResource("PlaceholderTexture2D_wpxek")
 [node name="Ingredient" type="RigidBody2D" parent="."]
 position = Vector2(225, 546)
 input_pickable = true
+can_sleep = false
 script = ExtResource("1_qxrsq")
 metadata/_edit_group_ = true
 
@@ -92,4 +93,4 @@ position = Vector2(563, 24)
 scale = Vector2(1152, 68)
 texture = SubResource("PlaceholderTexture2D_qr0u2")
 
-[connection signal="mouse_entered" from="Ingredient" to="Ingredient" method="_on_mouse_entered"]
+[connection signal="input_event" from="Ingredient" to="Ingredient" method="_on_input_event"]
