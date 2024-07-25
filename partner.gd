@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-signal player_turn_end
+signal boss_turn
 
 func _on_alchemia_partner_turn():
 	$"Partner UI".visible = true
@@ -30,6 +30,10 @@ func _on_alchemia_partner_turn():
 	elif Global.elephant_elephant:
 		$"Partner UI/Ultra Shield".visible = true
 
+func _on_ultra_weaken_pressed():
+	Global.boss_turn = true
+	hide()
 
-
-
+func _on_ultra_heal_pressed():
+	Global.boss_turn = true
+	hide()

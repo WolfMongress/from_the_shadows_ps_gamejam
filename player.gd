@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Area2D
 
 signal attacking_regular #regular attack with no transformations
 signal partner_turn
@@ -69,3 +69,12 @@ func _on_transformations_beast_2_transformation():
 func _on_transformations_beast_3_transformation():
 	Global.beast3 = true
 	Global.three_turn_countdown = 3
+
+func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	print("test")
+	if Global.boss_phase_1 == true:
+		if Input.is_action_pressed("block"):
+			Global.player_health = (Global.player_health - 8)
+		else:
+			Global.player_health = (Global.player_health - 10)
+		Global.boss_turn = false

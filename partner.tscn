@@ -48,3 +48,6 @@ text = "Ultra Heal"
 visible = false
 layout_mode = 2
 text = "Heal"
+
+[connection signal="pressed" from="Partner UI/Ultra Weaken" to="." method="_on_ultra_weaken_pressed"]
+[connection signal="pressed" from="Partner UI/Ultra Heal" to="." method="_on_ultra_heal_pressed"]

@@ -10,6 +10,9 @@ var beast3 = false
 var transformed = false
 var player_turn = true
 
+var boss_turn = false
+var boss_phase_1 = true
+
 var three_turn_countdown = 0
 
 var primary_ui_state = false
@@ -19,7 +22,7 @@ var bear_cat = false
 var bear_elephant = false
 
 var cat_bear = false
-var cat_cat = false
+var cat_cat = true
 var cat_elephant = false
 
 var elephant_bear = false

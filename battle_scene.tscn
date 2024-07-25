@@ -1,19 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://c83ev5p2gx8np"]
+[gd_scene load_steps=9 format=3 uid="uid://c83ev5p2gx8np"]
 
 [ext_resource type="PackedScene" uid="uid://csweymfv4kvk1" path="res://boss.tscn" id="1_gyqp6"]
 [ext_resource type="Script" path="res://battle_scene.gd" id="1_ohibv"]
 [ext_resource type="PackedScene" uid="uid://dqwdrmf7pnjwg" path="res://alchemia.tscn" id="2_b3pwu"]
 [ext_resource type="PackedScene" uid="uid://bgcl5q3337mxs" path="res://partner.tscn" id="4_85tkj"]
+[ext_resource type="Script" path="res://enemy_projectile.gd" id="5_3ucay"]
 
-[sub_resource type="Curve2D" id="Curve2D_ky8db"]
+[sub_resource type="Curve2D" id="Curve2D_c6x4t"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -36, -56, -378.942, -21.4187, 378.942, 21.4187, 561, -313, 0, 0, 0, 0, 1052, -71, 0, 0, 0, 0, -36, -56)
+"points": PackedVector2Array(0, 0, 0, 0, 511.755, 280.904, 125.31, -61.29, -125.31, 61.29, 272.991, 156.705, 0, 0, 0, 0, 64.073, 337.512)
 }
-point_count = 4
+point_count = 3
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3y25c"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_duloe"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8xk3i"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_cg8r8"]
+radius = 10.7831
 
 [node name="battle_scene" type="Node2D"]
 script = ExtResource("1_ohibv")
@@ -27,33 +29,37 @@ position = Vector2(257, 506)
 [node name="partner" parent="." instance=ExtResource("4_85tkj")]
 position = Vector2(135, 554)
 
-[node name="Path2D" type="Path2D" parent="."]
-visible = false
-position = Vector2(-4.40073, 0)
-scale = Vector2(0.877757, 1)
-curve = SubResource("Curve2D_ky8db")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-36, -56)
-rotation = -0.406508
-
-[node name="potion_bottle" type="StaticBody2D" parent="Path2D/PathFollow2D"]
-visible = false
-position = Vector2(122, -1)
+[node name="Enemy Projectile" type="Node2D" parent="."]
+script = ExtResource("5_3ucay")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/potion_bottle"]
-shape = SubResource("CircleShape2D_3y25c")
+[node name="Path2D" type="Path2D" parent="Enemy Projectile"]
+position = Vector2(167.806, 43.5268)
+scale = Vector2(1.64179, 1.18358)
+curve = SubResource("Curve2D_c6x4t")
 
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/potion_bottle"]
-scale = Vector2(20, 20)
-texture = SubResource("PlaceholderTexture2D_8xk3i")
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemy Projectile/Path2D"]
+position = Vector2(64.073, 337.512)
+rotation = 2.4282
+progress = 572.973
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Enemy Projectile/Path2D/PathFollow2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Projectile/Path2D/PathFollow2D/StaticBody2D"]
+position = Vector2(-0.0541992, -0.202515)
+scale = Vector2(22.041, 21.6632)
+texture = SubResource("PlaceholderTexture2D_duloe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Projectile/Path2D/PathFollow2D/StaticBody2D"]
+shape = SubResource("CircleShape2D_cg8r8")
 
 [connection signal="player_turn" from="boss" to="Alchemia" method="_on_placeholderboss_player_turn"]
 [connection signal="attacking_regular" from="Alchemia" to="boss" method="_on_alchemia_attacking_regular"]
 [connection signal="bear_bear" from="Alchemia" to="partner" method="_on_alchemia_bear_bear"]
 [connection signal="bear_cat" from="Alchemia" to="partner" method="_on_alchemia_bear_cat"]
 [connection signal="bear_elephant" from="Alchemia" to="partner" method="_on_alchemia_bear_elephant"]
+[connection signal="body_entered" from="Alchemia" to="Alchemia" method="_on_body_entered"]
+[connection signal="body_shape_entered" from="Alchemia" to="Alchemia" method="_on_body_shape_entered"]
 [connection signal="cat_bear" from="Alchemia" to="partner" method="_on_alchemia_cat_bear"]
 [connection signal="cat_cat" from="Alchemia" to="partner" method="_on_alchemia_cat_cat"]
 [connection signal="cat_elephant" from="Alchemia" to="partner" method="_on_alchemia_cat_elephant"]
@@ -61,4 +67,4 @@ texture = SubResource("PlaceholderTexture2D_8xk3i")
 [connection signal="elephant_cat" from="Alchemia" to="partner" method="_on_alchemia_elephant_cat"]
 [connection signal="elephant_elephant" from="Alchemia" to="partner" method="_on_alchemia_elephant_elephant"]
 [connection signal="partner_turn" from="Alchemia" to="partner" method="_on_alchemia_partner_turn"]
-[connection signal="player_turn_end" from="partner" to="Alchemia" method="_on_partner_player_turn_end"]
+[connection signal="boss_turn" from="partner" to="Enemy Projectile" method="_on_partner_boss_turn"]
