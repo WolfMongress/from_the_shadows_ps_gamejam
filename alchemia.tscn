@@ -1,14 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqwdrmf7pnjwg"]
+[gd_scene load_steps=9 format=3 uid="uid://dqwdrmf7pnjwg"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_xrqg0"]
-[ext_resource type="Script" path="res://Scripts/attack_button.gd" id="2_q8erl"]
-[ext_resource type="Script" path="res://Scripts/items_button.gd" id="3_yjrno"]
-[ext_resource type="Script" path="res://Scripts/shadows_button.gd" id="4_h1o3e"]
-[ext_resource type="Script" path="res://Scripts/shadows_submenu.gd" id="5_horqg"]
+[ext_resource type="Script" path="res://player.gd" id="1_xrqg0"]
+[ext_resource type="Script" path="res://attack_button.gd" id="2_q8erl"]
+[ext_resource type="Script" path="res://items_button.gd" id="3_yjrno"]
+[ext_resource type="Script" path="res://shadows_button.gd" id="4_h1o3e"]
+[ext_resource type="Script" path="res://shadows_submenu.gd" id="5_horqg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cwv0t"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ro64n"]
+
+[sub_resource type="GDScript" id="GDScript_crgs2"]
+script/source = "extends VBoxContainer
+
+func _on_alchemia_transformation_submenu_active():
+	visible = true
+"
 
 [node name="Alchemia" type="StaticBody2D"]
 position = Vector2(500, 500)
@@ -34,6 +41,12 @@ offset_bottom = -109.0
 layout_mode = 2
 text = "Attack"
 script = ExtResource("2_q8erl")
+
+[node name="Transformation Submenu" type="VBoxContainer" parent="Primary UI/Attack"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_crgs2")
 
 [node name="Items" type="Button" parent="Primary UI"]
 layout_mode = 2
@@ -69,6 +82,9 @@ layout_mode = 2
 text = "Alchemia"
 
 [connection signal="partner_turn" from="." to="Primary UI" method="_on_alchemia_partner_turn"]
+[connection signal="transformation_submenu_active" from="." to="Primary UI/Attack/Transformation Submenu" method="_on_alchemia_transformation_submenu_active"]
+[connection signal="transformation_submenu_active" from="." to="Primary UI/Items" method="_on_alchemia_transformation_submenu_active"]
+[connection signal="transformation_submenu_active" from="." to="Primary UI/Alchemy" method="_on_alchemia_transformation_submenu_active"]
 [connection signal="ui_appear" from="." to="Primary UI" method="_on_alchemia_ui_appear"]
 [connection signal="pressed" from="Primary UI/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="Primary UI/Alchemy" to="Primary UI/Attack" method="_on_shadows_pressed"]
@@ -76,3 +92,4 @@ text = "Alchemia"
 [connection signal="pressed" from="Primary UI/Alchemy" to="Primary UI/Alchemy/Alchemy Submenu" method="_on_shadows_pressed"]
 [connection signal="pressed" from="Primary UI/Alchemy/Alchemy Submenu/Partner" to="." method="_on_partner_pressed"]
 [connection signal="pressed" from="Primary UI/Alchemy/Alchemy Submenu/Items" to="." method="_on_items_pressed"]
+[connection signal="pressed" from="Primary UI/Alchemy/Alchemy Submenu/Alchemia" to="." method="_on_alchemia_pressed"]

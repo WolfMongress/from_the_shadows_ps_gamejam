@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://c030d2k86evn6"]
+[gd_scene load_steps=14 format=3 uid="uid://egljyw1183wh"]
 
 [ext_resource type="Script" path="res://ingredient.gd" id="1_qxrsq"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wpxek"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hr4d7"]
-radius = 24.0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cf67s"]
 
@@ -22,6 +21,15 @@ size = Vector2(1152, 68)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qr0u2"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_22nou"]
+size = Vector2(172, 0.341545)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2lnc7"]
+size = Vector2(150.443, 0.66209)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ioc0"]
+size = Vector2(152.03, 0.398125)
+
 [node name="item_alchemy" type="Node2D"]
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -34,6 +42,7 @@ scale = Vector2(1, 1.00001)
 polygon = PackedVector2Array(-2, -16, -2, -10, -16, 12, 16, 12, 2, -10, 2, -16)
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+visible = false
 position = Vector2(-0.279119, -1.85154)
 scale = Vector2(31.8199, 28.2781)
 texture = SubResource("PlaceholderTexture2D_wpxek")
@@ -68,7 +77,7 @@ scale = Vector2(48, 48.0001)
 texture = SubResource("PlaceholderTexture2D_yt1wt")
 
 [node name="Ingredient3" type="RigidBody2D" parent="."]
-position = Vector2(586, 541)
+position = Vector2(593, 317)
 input_pickable = true
 script = ExtResource("1_qxrsq")
 metadata/_edit_group_ = true
@@ -77,7 +86,8 @@ metadata/_edit_group_ = true
 shape = SubResource("CircleShape2D_hr4d7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ingredient3"]
-scale = Vector2(48, 48)
+position = Vector2(1.19209e-05, -2.0504e-05)
+scale = Vector2(19.9999, 20)
 texture = SubResource("PlaceholderTexture2D_vuko1")
 
 [node name="Ingredient4" type="RigidBody2D" parent="."]
@@ -118,6 +128,29 @@ shape = SubResource("RectangleShape2D_1icgd")
 position = Vector2(563, 24)
 scale = Vector2(1152, 68)
 texture = SubResource("PlaceholderTexture2D_qr0u2")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(593, 468)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(0, -0.841492)
+shape = SubResource("RectangleShape2D_22nou")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(550, 393)
+rotation = 2.09801
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(10.7257, 0.188965)
+shape = SubResource("RectangleShape2D_2lnc7")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(677, 368)
+rotation = -2.09789
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(-10.554, -47.9126)
+shape = SubResource("RectangleShape2D_4ioc0")
 
 [connection signal="input_event" from="Ingredient" to="Ingredient" method="_on_input_event"]
 [connection signal="input_event" from="Ingredient2" to="Ingredient2" method="_on_input_event"]

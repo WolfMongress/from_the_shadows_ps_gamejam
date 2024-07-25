@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c7krb3fe2qkik"]
 
 [ext_resource type="PackedScene" uid="uid://dqwdrmf7pnjwg" path="res://alchemia.tscn" id="1_fq2bq"]
-[ext_resource type="Script" path="res://Scripts/partner_shadowplay.gd" id="1_tpxlu"]
+[ext_resource type="Script" path="res://partner_shadowplay.gd" id="1_tpxlu"]
 [ext_resource type="PackedScene" uid="uid://bgcl5q3337mxs" path="res://partner.tscn" id="3_bhbey"]
 
 [node name="partner_shadowplay" type="Node2D"]

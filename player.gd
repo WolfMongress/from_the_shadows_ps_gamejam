@@ -27,6 +27,7 @@ var beast2
 var beast3
 
 @export var three_turn_countdown = 0
+signal transformation_submenu_active
 
 func _ready():
 	if first_turn:
@@ -39,14 +40,18 @@ func _on_placeholderboss_player_turn():
 func _on_attack_pressed():
 	if not transformed:
 		attacking_regular.emit()
+	else:
+		transformation_submenu_active.emit()
+		if beast1 == true:
+			pass
 	partner_turn.emit()
 
+#code doing with partner transformations
 func _on_partner_pressed():
 	$"Primary UI".hide()
 	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file("res://partner_shadowplay.tscn")
 
-#code doing with partner transformations
 func _on_partner_shadowplay_bear_bear_selection():
 	get_tree().change_scene_to_file("res://battle_scene.tscn")
 	bear_bear.emit()
@@ -99,6 +104,10 @@ func _on_items_pressed():
 
 
 #code doing with player transformations
+func _on_alchemia_pressed():
+	$"Primary UI".hide()
+	get_tree().change_scene_to_file("res://transformations.tscn")
+
 func _on_transformations_transformed():
 	transformed = true
 

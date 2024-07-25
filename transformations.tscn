@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://ci5x07xbgg68j"]
 
-[ext_resource type="Script" path="res://transformations.gd" id="1_6c8sa"]
+[ext_resource type="Script" path="res://transformations.gd" id="1_qse1g"]
 [ext_resource type="PackedScene" uid="uid://dqwdrmf7pnjwg" path="res://alchemia.tscn" id="2_cyc43"]
-[ext_resource type="Script" path="res://transformation_sprites.gd" id="3_dxevy"]
+[ext_resource type="Script" path="res://transformation_sprites.gd" id="3_balc5"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xefdq"]
 
 [node name="transformations" type="Node2D"]
-script = ExtResource("1_6c8sa")
+script = ExtResource("1_qse1g")
 
 [node name="Alchemia" parent="." instance=ExtResource("2_cyc43")]
 
@@ -29,7 +29,7 @@ text = "Right"
 position = Vector2(572, 327)
 scale = Vector2(384, 641.5)
 texture = SubResource("PlaceholderTexture2D_xefdq")
-script = ExtResource("3_dxevy")
+script = ExtResource("3_balc5")
 
 [connection signal="beast1_transformation" from="." to="Alchemia" method="_on_transformations_beast_1_transformation"]
 [connection signal="beast2_transformation" from="." to="Alchemia" method="_on_transformations_beast_2_transformation"]
