@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://c030d2k86evn6"]
+[gd_scene load_steps=11 format=3 uid="uid://c030d2k86evn6"]
 
-[ext_resource type="Script" path="res://Scripts/ingredient.gd" id="1_qxrsq"]
+[ext_resource type="Script" path="res://ingredient.gd" id="1_qxrsq"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wpxek"]
 
@@ -10,6 +10,12 @@ radius = 24.0
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cf67s"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yt1wt"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vuko1"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dn2o2"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lu20b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1icgd"]
 size = Vector2(1152, 68)
@@ -49,6 +55,8 @@ texture = SubResource("PlaceholderTexture2D_cf67s")
 
 [node name="Ingredient2" type="RigidBody2D" parent="."]
 position = Vector2(379, 544)
+input_pickable = true
+script = ExtResource("1_qxrsq")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ingredient2"]
@@ -61,24 +69,42 @@ texture = SubResource("PlaceholderTexture2D_yt1wt")
 
 [node name="Ingredient3" type="RigidBody2D" parent="."]
 position = Vector2(586, 541)
+input_pickable = true
+script = ExtResource("1_qxrsq")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ingredient3"]
 shape = SubResource("CircleShape2D_hr4d7")
 
+[node name="Sprite2D" type="Sprite2D" parent="Ingredient3"]
+scale = Vector2(48, 48)
+texture = SubResource("PlaceholderTexture2D_vuko1")
+
 [node name="Ingredient4" type="RigidBody2D" parent="."]
 position = Vector2(745, 540)
+input_pickable = true
+script = ExtResource("1_qxrsq")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ingredient4"]
 shape = SubResource("CircleShape2D_hr4d7")
 
+[node name="Sprite2D" type="Sprite2D" parent="Ingredient4"]
+scale = Vector2(50, 50)
+texture = SubResource("PlaceholderTexture2D_dn2o2")
+
 [node name="Ingredient5" type="RigidBody2D" parent="."]
 position = Vector2(963, 541)
+input_pickable = true
+script = ExtResource("1_qxrsq")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ingredient5"]
 shape = SubResource("CircleShape2D_hr4d7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ingredient5"]
+scale = Vector2(50, 50)
+texture = SubResource("PlaceholderTexture2D_lu20b")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(13, 590)
@@ -94,3 +120,7 @@ scale = Vector2(1152, 68)
 texture = SubResource("PlaceholderTexture2D_qr0u2")
 
 [connection signal="input_event" from="Ingredient" to="Ingredient" method="_on_input_event"]
+[connection signal="input_event" from="Ingredient2" to="Ingredient2" method="_on_input_event"]
+[connection signal="input_event" from="Ingredient3" to="Ingredient3" method="_on_input_event"]
+[connection signal="input_event" from="Ingredient4" to="Ingredient4" method="_on_input_event"]
+[connection signal="input_event" from="Ingredient5" to="Ingredient5" method="_on_input_event"]
