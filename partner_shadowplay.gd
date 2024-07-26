@@ -81,7 +81,7 @@ func _on_cat_button_front_pressed():
 		elephant_front = false
 
 func _process(delta):
-	print(finished_back and finished_front)
+	#print(finished_back and finished_front)
 	if finished_back and finished_front:
 		$ok_button.visible = true
 
@@ -105,4 +105,5 @@ func _on_ok_button_pressed():
 	elif cat_back and cat_front:
 		Global.cat_cat = true
 	Global.player_turn = false
+	Global.partner_turn = true
 	get_tree().change_scene_to_file("res://battle_scene.tscn")

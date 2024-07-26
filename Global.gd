@@ -38,9 +38,9 @@ var elephant_bear = false
 var elephant_cat = false
 var elephant_elephant = false
 
-var heal_potion = false
-var weakness_potion = false
-var defense_potion = false
+var heal_potion = 0
+var weakness_potion = 0
+var defense_potion = 0
 
 var goldenseal_amount = 5
 var armoranth_amount = 5

@@ -102,12 +102,12 @@ input_pickable = true
 script = ExtResource("1_qxrsq")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Shadow"]
-shape = SubResource("CircleShape2D_hr4d7")
-
 [node name="Sprite2D" type="Sprite2D" parent="Shadow"]
 scale = Vector2(50, 50)
 texture = SubResource("PlaceholderTexture2D_dn2o2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shadow"]
+shape = SubResource("CircleShape2D_hr4d7")
 
 [node name="Star Fragment" type="RigidBody2D" parent="."]
 position = Vector2(963, 541)
@@ -115,12 +115,12 @@ input_pickable = true
 script = ExtResource("1_qxrsq")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Star Fragment"]
-shape = SubResource("CircleShape2D_hr4d7")
-
 [node name="Sprite2D" type="Sprite2D" parent="Star Fragment"]
 scale = Vector2(50, 50)
 texture = SubResource("PlaceholderTexture2D_lu20b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Star Fragment"]
+shape = SubResource("CircleShape2D_hr4d7")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(13, 590)

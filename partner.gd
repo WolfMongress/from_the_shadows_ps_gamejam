@@ -41,13 +41,35 @@ func _process(delta):
 func _on_ultra_weaken_pressed():
 	Global.partner_turn = false
 	$"Partner UI".hide()
-	$"Partner UI/Ultra Weaken".hide()
 	Global.boss_turn = true
 	Global.boss_ultra_weakened = true
+	
+func _on_weaken_pressed():
+	Global.partner_turn = false
+	$"Partner UI".hide()
+	Global.boss_turn = true
+	Global.boss_weakened = true
+
+func _on_ultra_shield_pressed():
+	Global.partner_turn = false
+	$"Partner UI".hide()
+	Global.boss_turn = true
+	Global.player_ultra_shield = true
+
+func _on_shield_pressed():
+	Global.partner_turn = false
+	$"Partner UI".hide()
+	Global.boss_turn = true
+	Global.player_shield = true
 
 func _on_ultra_heal_pressed():
 	Global.partner_turn = false
-	$"Partner UI/Ultra Heal".hide()
 	$"Partner UI".hide()
 	Global.boss_turn = true
 	Global.player_health = (Global.player_health + 20)
+
+func _on_heal_pressed():
+	Global.partner_turn = false
+	$"Partner UI".hide()
+	Global.boss_turn = true
+	Global.player_health = (Global.player_health + 15)

@@ -51,4 +51,8 @@ layout_mode = 2
 text = "Heal"
 
 [connection signal="pressed" from="Partner UI/Ultra Weaken" to="." method="_on_ultra_weaken_pressed"]
+[connection signal="pressed" from="Partner UI/Weaken" to="." method="_on_weaken_pressed"]
+[connection signal="pressed" from="Partner UI/Ultra Shield" to="." method="_on_ultra_shield_pressed"]
+[connection signal="pressed" from="Partner UI/Shield" to="." method="_on_shield_pressed"]
 [connection signal="pressed" from="Partner UI/Ultra Heal" to="." method="_on_ultra_heal_pressed"]
+[connection signal="pressed" from="Partner UI/Heal" to="." method="_on_heal_pressed"]
