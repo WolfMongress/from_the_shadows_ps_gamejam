@@ -7,6 +7,13 @@ var beast1 = false
 var beast2 = false
 var beast3 = false
 
+var beast1_ranged = false
+var beast1_melee = false
+var beast2_ranged = false
+var beast2_melee = false
+var beast3_ranged = false
+var beast3_melee = false
+
 var transformed = false
 var player_turn = true
 var partner_turn = false
@@ -19,8 +26,15 @@ var phase2_which_attack : int
 
 var boss_weakened
 var boss_ultra_weakened
+
+var boss_shield_active
+
 var player_shield
 var player_ultra_shield
+
+var boss_poisoned
+var boss_dazed
+var player_dazed
 
 var three_turn_countdown = 0
 

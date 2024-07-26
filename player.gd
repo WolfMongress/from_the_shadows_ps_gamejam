@@ -33,12 +33,22 @@ func _on_placeholderboss_player_turn():
 func _on_attack_pressed():
 	if not Global.transformed:
 		attacking_regular.emit()
+		Global.partner_turn = true
+		Global.player_turn = false
 	else:
-		transformation_submenu_active.emit()
 		if Global.beast1 == true:
-			pass
-	Global.player_turn = false
-	Global.partner_turn = true
+			$"Primary UI/Attack/Transformation Submenu".show()
+			$"Primary UI/Attack/Transformation Submenu/Plasma Blast".show()
+			$"Primary UI/Attack/Transformation Submenu/Claw Strike".show()
+		elif Global.beast2 == true:
+			$"Primary UI/Attack/Transformation Submenu".show()
+			$"Primary UI/Attack/Transformation Submenu/Mega Bottle".show()
+			$"Primary UI/Attack/Transformation Submenu/Cloak Slap".show()
+		elif Global.beast3 == true:
+			$"Primary UI/Attack/Transformation Submenu".show()
+			$"Primary UI/Attack/Transformation Submenu/Psionic Roar".show()
+			$"Primary UI/Attack/Transformation Submenu/Body Slam".show()
+
 
 #code doing with partner transformations
 func _on_partner_pressed():
@@ -67,18 +77,31 @@ func _on_alchemia_pressed():
 
 func _on_transformations_transformed():
 	Global.transformed = true
+	Global.partner_turn = true
 
 func _on_transformations_beast_1_transformation():
 	Global.beast1 = true
 	Global.three_turn_countdown = 3
+	Global.partner_turn = true
 
 func _on_transformations_beast_2_transformation():
 	Global.beast2 = true
 	Global.three_turn_countdown = 3
+	Global.partner_turn = true
 
 func _on_transformations_beast_3_transformation():
 	Global.beast3 = true
 	Global.three_turn_countdown = 3
+	Global.partner_turn = true
+
+func _on_plasma_blast_pressed():
+	Global.beast1_ranged = true
+	Global.three_turn_countdown = (Global.three_turn_countdown - 1)
+
+func _on_claw_strike_pressed():
+	Global.beast1_ranged = true
+	Global.three_turn_countdown = (Global.three_turn_countdown - 1)
+	hide()
 
 #weaken is boss damage * 0.9
 #block is boss damage * 0.9

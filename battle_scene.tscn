@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://c83ev5p2gx8np"]
+[gd_scene load_steps=15 format=3 uid="uid://c83ev5p2gx8np"]
 
 [ext_resource type="PackedScene" uid="uid://csweymfv4kvk1" path="res://boss.tscn" id="1_gyqp6"]
 [ext_resource type="Script" path="res://battle_scene.gd" id="1_ohibv"]
 [ext_resource type="PackedScene" uid="uid://dqwdrmf7pnjwg" path="res://alchemia.tscn" id="2_b3pwu"]
 [ext_resource type="PackedScene" uid="uid://bgcl5q3337mxs" path="res://partner.tscn" id="4_85tkj"]
 [ext_resource type="Script" path="res://enemy_projectile.gd" id="5_3ucay"]
+[ext_resource type="Script" path="res://plasma_bolt_projectile.gd" id="6_h223l"]
+[ext_resource type="Script" path="res://claw_strike_leap.gd" id="7_obfxi"]
 
 [sub_resource type="Curve2D" id="Curve2D_c6x4t"]
 _data = {
@@ -16,6 +18,19 @@ point_count = 3
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cg8r8"]
 radius = 10.7831
+
+[sub_resource type="Curve2D" id="Curve2D_66y52"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 269, 465, 0, 0, 0, 0, 1007, 465)
+}
+point_count = 2
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cpqhf"]
+size = Vector2(50, 50)
+
+[sub_resource type="Curve2D" id="Curve2D_oyoen"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_uivlu"]
 
 [node name="battle_scene" type="Node2D"]
 script = ExtResource("1_ohibv")
@@ -50,11 +65,13 @@ position = Vector2(1046, 468)
 [node name="Alchemia" parent="." instance=ExtResource("2_b3pwu")]
 position = Vector2(257, 506)
 monitorable = true
+metadata/_edit_lock_ = true
 
 [node name="partner" parent="." instance=ExtResource("4_85tkj")]
 position = Vector2(135, 554)
 
 [node name="Enemy Projectile" type="Node2D" parent="." node_paths=PackedStringArray("phase1_timer", "phase2_1_timer", "phase2_2_1_timer", "phase2_2_2_timer", "phase2_3_1_timer", "phase2_3_2_timer")]
+visible = false
 script = ExtResource("5_3ucay")
 phase1_timer = NodePath("../Timer")
 phase2_1_timer = NodePath("../Phase 2 Attack 1")
@@ -83,6 +100,43 @@ texture = SubResource("PlaceholderTexture2D_duloe")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Projectile/Path2D/PathFollow2D/StaticBody2D"]
 shape = SubResource("CircleShape2D_cg8r8")
 
+[node name="Plasma Blast Projectile" type="Node2D" parent="." node_paths=PackedStringArray("projectile_timer")]
+visible = false
+script = ExtResource("6_h223l")
+projectile_timer = NodePath("Plasma Blast TImer")
+metadata/_edit_group_ = true
+
+[node name="Plasma Blast TImer" type="Timer" parent="Plasma Blast Projectile"]
+wait_time = 2.4
+one_shot = true
+
+[node name="Path2D" type="Path2D" parent="Plasma Blast Projectile"]
+curve = SubResource("Curve2D_66y52")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Plasma Blast Projectile/Path2D"]
+position = Vector2(269, 465)
+
+[node name="Sprite2D" type="Sprite2D" parent="Plasma Blast Projectile/Path2D/PathFollow2D"]
+position = Vector2(1, 0)
+scale = Vector2(-1, 1)
+texture = SubResource("PlaceholderTexture2D_cpqhf")
+
+[node name="Claw Strike Leap" type="Node2D" parent="."]
+visible = false
+position = Vector2(257, 506)
+script = ExtResource("7_obfxi")
+
+[node name="Timer" type="Timer" parent="Claw Strike Leap"]
+
+[node name="Path2D" type="Path2D" parent="Claw Strike Leap"]
+curve = SubResource("Curve2D_oyoen")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Claw Strike Leap/Path2D"]
+
+[node name="Claw Strike `Alchemia`" type="Sprite2D" parent="Claw Strike Leap/Path2D/PathFollow2D"]
+scale = Vector2(101, 150)
+texture = SubResource("PlaceholderTexture2D_uivlu")
+
 [connection signal="timeout" from="Timer" to="Alchemia" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="Enemy Projectile" method="_on_timer_timeout"]
 [connection signal="timeout" from="Phase 2 Attack 1" to="Alchemia" method="_on_phase_2_attack_1_timeout"]
@@ -106,3 +160,5 @@ shape = SubResource("CircleShape2D_cg8r8")
 [connection signal="elephant_elephant" from="Alchemia" to="partner" method="_on_alchemia_elephant_elephant"]
 [connection signal="partner_turn" from="Alchemia" to="partner" method="_on_alchemia_partner_turn"]
 [connection signal="boss_turn" from="partner" to="Enemy Projectile" method="_on_partner_boss_turn"]
+[connection signal="timeout" from="Plasma Blast Projectile/Plasma Blast TImer" to="boss" method="_on_plasma_blast_t_imer_timeout"]
+[connection signal="timeout" from="Plasma Blast Projectile/Plasma Blast TImer" to="Plasma Blast Projectile" method="_on_plasma_blast_t_imer_timeout"]
