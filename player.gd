@@ -23,7 +23,7 @@ func _process(delta):
 		$"Primary UI".show()
 	elif Global.player_turn == false:
 		$"Primary UI".hide()
-		partner_turn.emit()
+		Global.partner_turn = true
 	if Global.player_health > 200:
 		Global.player_health = 200
 
@@ -38,23 +38,31 @@ func _on_attack_pressed():
 		if Global.beast1 == true:
 			pass
 	Global.player_turn = false
-	partner_turn.emit()
+	Global.partner_turn = true
 
 #code doing with partner transformations
 func _on_partner_pressed():
-	$"Primary UI".hide()
+	Global.player_turn = false
+	Global.cat_bear = false
+	Global.cat_cat = false
+	Global.cat_elephant = false
+	Global.bear_bear = false
+	Global.bear_cat = false
+	Global.bear_elephant = false
+	Global.elephant_bear = false
+	Global.elephant_cat = false
+	Global.elephant_elephant = false
 	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file("res://partner_shadowplay.tscn")
 
 #code doing with items
 func _on_items_pressed():
-	$"Primary UI".hide()
+	Global.player_turn = false
 	get_tree().change_scene_to_file("res://item_alchemy.tscn")
-
 
 #code doing with player transformations
 func _on_alchemia_pressed():
-	$"Primary UI".hide()
+	Global.player_turn = false
 	get_tree().change_scene_to_file("res://transformations.tscn")
 
 func _on_transformations_transformed():
@@ -87,7 +95,6 @@ func _on_timer_timeout():
 				Global.player_health = (Global.player_health - 13)
 			if Global.player_shield == true:
 				Global.player_health = (Global.player_health - 10)
-	
 		elif Global.boss_ultra_weakened:
 			if Input.is_action_pressed("block"):
 				Global.player_health = (Global.player_health - 10)
@@ -95,38 +102,20 @@ func _on_timer_timeout():
 				Global.player_health = (Global.player_health - 9)
 			else:
 				Global.player_health = (Global.player_health - 12)
-				
 		elif Global.player_shield:
 			Global.player_health = (Global.player_health - 12)
-
 		elif Global.player_ultra_shield:
 			if Global.boss_weakened:
 				Global.player_health = (Global.player_health - 9)
 			else:
 				Global.player_health = (Global.player_health - 10)
-
 		else:
 			if Input.is_action_pressed("block"):
 				Global.player_health = (Global.player_health - 13)
 			else:
 				Global.player_health = (Global.player_health - 15)
+		Global.boss_ultra_weakened = false
+		Global.boss_weakened = false
+		Global.player_ultra_shield = false
+		Global.player_shield = false
 		print(Global.player_health)
-	
-	#elif Global.boss_phase_2:
-		#match Global.phase2_which_attack:
-			#0:
-				#Global.player_health -= 15
-			#1:
-				#Global.player_health -= 15
-			#2:
-				#Global.player_health -= 30
-
-
-func _on_phase_2_timer_1_timeout():
-	Global.player_health -= 15
-
-func _on_phase_2_timer_2_timeout():
-	Global.player_health -= 15
-
-func _on_phase_2_timer_3_timeout():
-	Global.player_health -= 30

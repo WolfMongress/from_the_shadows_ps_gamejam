@@ -9,12 +9,5 @@ func _on_alchemia_attacking_regular():
 	boss_health = Global.boss_health
 	boss_health_bar.emit(boss_health)
 	player_turn.emit()
-	if boss_health <= 0:
-		Global.boss_phase_1 = false
-		Global.boss_phase_2 = true
-		Global.boss_health = 1000
-		boss_health = Global.boss_health
-		boss_health_bar.emit(boss_health)
-		player_turn.emit()
 
 

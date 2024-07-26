@@ -14,6 +14,7 @@ metadata/_edit_group_ = true
 position = Vector2(-32, 1)
 
 [node name="Partner UI" type="VBoxContainer" parent="."]
+visible = false
 offset_left = -68.0
 offset_top = -360.0
 offset_right = 46.0

@@ -88,93 +88,21 @@ func _process(delta):
 func _on_ok_button_pressed():
 	if bear_back and bear_front:
 		Global.bear_bear = true
-		Global.bear_cat = false
-		Global.bear_elephant = false
-		Global.cat_bear = false
-		Global.cat_cat = false
-		Global.cat_elephant = false
-		Global.elephant_bear = false
-		Global.elephant_cat = false
-		Global.elephant_elephant = false
 	elif bear_back and elephant_front:
-		Global.bear_bear = false
-		Global.bear_cat = false
 		Global.bear_elephant = true
-		Global.cat_bear = false
-		Global.cat_cat = false
-		Global.cat_elephant = false
-		Global.elephant_bear = false
-		Global.elephant_cat = false
-		Global.elephant_elephant = false
 	elif bear_back and cat_front:
-		Global.bear_bear = false
 		Global.bear_cat = true
-		Global.bear_elephant = false
-		Global.cat_bear = false
-		Global.cat_cat = false
-		Global.cat_elephant = false
-		Global.elephant_bear = false
-		Global.elephant_cat = false
-		Global.elephant_elephant = false
 	elif elephant_back and bear_front:
-		Global.bear_bear = false
-		Global.bear_cat = false
-		Global.bear_elephant = false
-		Global.cat_bear = false
-		Global.cat_cat = false
-		Global.cat_elephant = false
 		Global.elephant_bear = true
-		Global.elephant_cat = false
-		Global.elephant_elephant = false
 	elif elephant_back and elephant_front:
-		Global.bear_bear = false
-		Global.bear_cat = false
-		Global.bear_elephant = false
-		Global.cat_bear = false
-		Global.cat_cat = false
-		Global.cat_elephant = false
-		Global.elephant_bear = false
-		Global.elephant_cat = false
 		Global.elephant_elephant = true
 	elif elephant_back and cat_front:
-		Global.bear_bear = false
-		Global.bear_cat = false
-		Global.bear_elephant = false
-		Global.cat_bear = false
-		Global.cat_cat = false
-		Global.cat_elephant = false
-		Global.elephant_bear = false
 		Global.elephant_cat = true
-		Global.elephant_elephant = false
 	elif cat_back and bear_front:
-		Global.bear_bear = false
-		Global.bear_cat = false
-		Global.bear_elephant = false
 		Global.cat_bear = true
-		Global.cat_cat = false
-		Global.cat_elephant = false
-		Global.elephant_bear = false
-		Global.elephant_cat = false
-		Global.elephant_elephant = false
 	elif cat_back and elephant_front:
-		Global.bear_bear = false
-		Global.bear_cat = false
-		Global.bear_elephant = false
-		Global.cat_bear = false
-		Global.cat_cat = false
 		Global.cat_elephant = true
-		Global.elephant_bear = false
-		Global.elephant_cat = false
-		Global.elephant_elephant = false
 	elif cat_back and cat_front:
-		Global.bear_bear = false
-		Global.bear_cat = false
-		Global.bear_elephant = false
-		Global.cat_bear = false
 		Global.cat_cat = true
-		Global.cat_elephant = false
-		Global.elephant_bear = false
-		Global.elephant_cat = false
-		Global.elephant_elephant = false
 	Global.player_turn = false
 	get_tree().change_scene_to_file("res://battle_scene.tscn")
