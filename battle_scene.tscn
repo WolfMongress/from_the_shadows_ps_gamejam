@@ -24,6 +24,26 @@ script = ExtResource("1_ohibv")
 wait_time = 2.8
 one_shot = true
 
+[node name="Phase 2 Attack 1" type="Timer" parent="."]
+wait_time = 2.1
+one_shot = true
+
+[node name="Phase 2 Attack 2" type="Timer" parent="."]
+wait_time = 2.1
+one_shot = true
+
+[node name="Phase 2 Attack 2 Delay" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Phase 2 Attack 3" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Phase 2 Attack 3 Delay" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [node name="boss" parent="." instance=ExtResource("1_gyqp6")]
 position = Vector2(1046, 468)
 
@@ -34,9 +54,14 @@ monitorable = true
 [node name="partner" parent="." instance=ExtResource("4_85tkj")]
 position = Vector2(135, 554)
 
-[node name="Enemy Projectile" type="Node2D" parent="." node_paths=PackedStringArray("phase1_timer")]
+[node name="Enemy Projectile" type="Node2D" parent="." node_paths=PackedStringArray("phase1_timer", "phase2_1_timer", "phase2_2_1_timer", "phase2_2_2_timer", "phase2_3_1_timer", "phase2_3_2_timer")]
 script = ExtResource("5_3ucay")
 phase1_timer = NodePath("../Timer")
+phase2_1_timer = NodePath("../Phase 2 Attack 1")
+phase2_2_1_timer = NodePath("../Phase 2 Attack 2")
+phase2_2_2_timer = NodePath("../Phase 2 Attack 2 Delay")
+phase2_3_1_timer = NodePath("../Phase 2 Attack 3")
+phase2_3_2_timer = NodePath("../Phase 2 Attack 3 Delay")
 metadata/_edit_group_ = true
 
 [node name="Path2D" type="Path2D" parent="Enemy Projectile"]
@@ -60,6 +85,14 @@ shape = SubResource("CircleShape2D_cg8r8")
 
 [connection signal="timeout" from="Timer" to="Alchemia" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="Enemy Projectile" method="_on_timer_timeout"]
+[connection signal="timeout" from="Phase 2 Attack 1" to="Alchemia" method="_on_phase_2_attack_1_timeout"]
+[connection signal="timeout" from="Phase 2 Attack 1" to="Enemy Projectile" method="_on_phase_2_attack_1_timeout"]
+[connection signal="timeout" from="Phase 2 Attack 2" to="Alchemia" method="_on_phase_2_attack_2_timeout"]
+[connection signal="timeout" from="Phase 2 Attack 2" to="Enemy Projectile" method="_on_phase_2_attack_2_timeout"]
+[connection signal="timeout" from="Phase 2 Attack 2 Delay" to="Enemy Projectile" method="_on_phase_2_attack_2_delay_timeout"]
+[connection signal="timeout" from="Phase 2 Attack 3" to="Alchemia" method="_on_phase_2_attack_3_timeout"]
+[connection signal="timeout" from="Phase 2 Attack 3" to="Enemy Projectile" method="_on_phase_2_attack_3_timeout"]
+[connection signal="timeout" from="Phase 2 Attack 3 Delay" to="Enemy Projectile" method="_on_phase_2_attack_3_delay_timeout"]
 [connection signal="player_turn" from="boss" to="Alchemia" method="_on_placeholderboss_player_turn"]
 [connection signal="attacking_regular" from="Alchemia" to="boss" method="_on_alchemia_attacking_regular"]
 [connection signal="bear_bear" from="Alchemia" to="partner" method="_on_alchemia_bear_bear"]

@@ -23,7 +23,7 @@ func _process(delta):
 		$"Primary UI".show()
 	elif Global.player_turn == false:
 		$"Primary UI".hide()
-		Global.partner_turn = true
+		#Global.partner_turn = true
 	if Global.player_health > 200:
 		Global.player_health = 200
 
@@ -119,3 +119,15 @@ func _on_timer_timeout():
 		Global.player_ultra_shield = false
 		Global.player_shield = false
 		print(Global.player_health)
+
+
+func _on_phase_2_attack_1_timeout():
+	Global.player_health -= 15
+
+
+func _on_phase_2_attack_2_timeout():
+	Global.player_health -= 15
+
+
+func _on_phase_2_attack_3_timeout():
+	Global.player_health -= 30

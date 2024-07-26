@@ -3,7 +3,7 @@ extends StaticBody2D
 signal boss_turn
 
 func _process(delta):
-	if Global.partner_turn == true and Global.player_turn != true:
+	if Global.partner_turn == true:
 		$"Partner UI".show()
 		if Global.bear_bear:
 			$"Partner UI/Ultra Weaken".show()
@@ -47,7 +47,7 @@ func _on_ultra_weaken_pressed():
 
 func _on_ultra_heal_pressed():
 	Global.partner_turn = false
-	$"Partner UI".hide()
 	$"Partner UI/Ultra Heal".hide()
+	$"Partner UI".hide()
 	Global.boss_turn = true
 	Global.player_health = (Global.player_health + 20)
