@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqwdrmf7pnjwg"]
+[gd_scene load_steps=10 format=3 uid="uid://dqwdrmf7pnjwg"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_dfq2s"]
 [ext_resource type="Script" path="res://attack_button.gd" id="2_85lj6"]
@@ -11,13 +11,6 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ro64n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cwv0t"]
-
-[sub_resource type="GDScript" id="GDScript_crgs2"]
-script/source = "extends VBoxContainer
-
-func _on_alchemia_transformation_submenu_active():
-	visible = true
-"
 
 [node name="Alchemia" type="Area2D"]
 position = Vector2(500, 500)
@@ -45,10 +38,84 @@ text = "Attack"
 script = ExtResource("2_85lj6")
 
 [node name="Transformation Submenu" type="VBoxContainer" parent="Primary UI/Attack"]
+visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = SubResource("GDScript_crgs2")
+offset_left = 102.0
+offset_top = -13.0
+offset_right = 168.0
+offset_bottom = 42.0
+
+[node name="Plasma Blast" type="Button" parent="Primary UI/Attack/Transformation Submenu"]
+visible = false
+layout_mode = 2
+text = "Plasma Blast"
+
+[node name="Plasma Blast Description" type="TextEdit" parent="Primary UI/Attack/Transformation Submenu/Plasma Blast"]
+visible = false
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Shoots a long range ball of plasma out of mouth dealing 30-40 damage."
+
+[node name="Claw Strike" type="Button" parent="Primary UI/Attack/Transformation Submenu"]
+visible = false
+layout_mode = 2
+text = "Claw Strike"
+
+[node name="Claw Strike Description" type="TextEdit" parent="Primary UI/Attack/Transformation Submenu/Claw Strike"]
+visible = false
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Leaps forward and obliterates anything in its way with razor sharp claws. Deals 30-40 dmg."
+
+[node name="Mega Bottle" type="Button" parent="Primary UI/Attack/Transformation Submenu"]
+visible = false
+layout_mode = 2
+text = "Mega Bottle"
+
+[node name="Mega Bottle Description" type="TextEdit" parent="Primary UI/Attack/Transformation Submenu/Mega Bottle"]
+visible = false
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Throws a massive concoction of potions which poisons anybody who gets hit and deals 25 dmg."
+
+[node name="Cloak Slap" type="Button" parent="Primary UI/Attack/Transformation Submenu"]
+visible = false
+layout_mode = 2
+text = "Cloak Slap"
+
+[node name="Cloak Slap Description" type="TextEdit" parent="Primary UI/Attack/Transformation Submenu/Cloak Slap"]
+visible = false
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Runs up to an enemy and slaps them with super heavy cloak dazing them and dealing 20 dmg."
+
+[node name="Supersonic Roar" type="Button" parent="Primary UI/Attack/Transformation Submenu"]
+visible = false
+layout_mode = 2
+text = "Psionic Roar"
+
+[node name="Supersonic Roar Description" type="TextEdit" parent="Primary UI/Attack/Transformation Submenu/Supersonic Roar"]
+visible = false
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Roars so inanely loudly that it blasts the eardrums of anybody who hears and dazes them. Deals 25 dmg."
+
+[node name="Body Slam" type="Button" parent="Primary UI/Attack/Transformation Submenu"]
+visible = false
+layout_mode = 2
+text = "Body Slam"
+
+[node name="Body Slam Description" type="TextEdit" parent="Primary UI/Attack/Transformation Submenu/Body Slam"]
+visible = false
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Jumps up into the air and slams down on enemy dealing 50 - 60 dmg but causes you to be dazed."
 
 [node name="Items" type="Button" parent="Primary UI"]
 layout_mode = 2
@@ -56,6 +123,7 @@ text = "Items"
 script = ExtResource("3_ggpbo")
 
 [node name="ItemList" type="ItemList" parent="Primary UI/Items"]
+visible = false
 layout_mode = 0
 offset_left = 105.0
 offset_top = 8.0
@@ -106,6 +174,8 @@ script = ExtResource("7_rd4oa")
 [connection signal="transformation_submenu_active" from="." to="Primary UI/Alchemy" method="_on_alchemia_transformation_submenu_active"]
 [connection signal="ui_appear" from="." to="Primary UI" method="_on_alchemia_ui_appear"]
 [connection signal="pressed" from="Primary UI/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="Primary UI/Attack/Transformation Submenu/Plasma Blast" to="." method="_on_plasma_blast_pressed"]
+[connection signal="pressed" from="Primary UI/Attack/Transformation Submenu/Claw Strike" to="." method="_on_claw_strike_pressed"]
 [connection signal="pressed" from="Primary UI/Items" to="Primary UI/Attack" method="_on_items_pressed"]
 [connection signal="pressed" from="Primary UI/Items" to="Primary UI/Alchemy" method="_on_items_pressed"]
 [connection signal="item_activated" from="Primary UI/Items/ItemList" to="Primary UI/Items/ItemList" method="_on_item_activated"]

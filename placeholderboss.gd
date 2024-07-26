@@ -17,4 +17,8 @@ func _on_alchemia_attacking_regular():
 		boss_health_bar.emit(boss_health)
 		player_turn.emit()
 
-
+func _on_plasma_blast_t_imer_timeout():
+	if Global.boss_shield_active:
+		pass
+	else:
+		Global.boss_health = (Global.boss_health - (randi() % 40 + 10))
