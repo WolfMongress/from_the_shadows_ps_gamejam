@@ -11,7 +11,10 @@ var transformed = false
 var player_turn = true
 
 var boss_turn = false
-var boss_phase_1 = true
+var boss_phase_1 = false
+var boss_phase_2 = true
+
+var phase2_which_attack : int
 
 var boss_weakened
 var boss_ultra_weakened

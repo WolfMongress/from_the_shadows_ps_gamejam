@@ -87,6 +87,7 @@ func _on_timer_timeout():
 				Global.player_health = (Global.player_health - 13)
 			if Global.player_shield == true:
 				Global.player_health = (Global.player_health - 10)
+	
 		elif Global.boss_ultra_weakened:
 			if Input.is_action_pressed("block"):
 				Global.player_health = (Global.player_health - 10)
@@ -94,16 +95,38 @@ func _on_timer_timeout():
 				Global.player_health = (Global.player_health - 9)
 			else:
 				Global.player_health = (Global.player_health - 12)
+				
 		elif Global.player_shield:
 			Global.player_health = (Global.player_health - 12)
+
 		elif Global.player_ultra_shield:
 			if Global.boss_weakened:
 				Global.player_health = (Global.player_health - 9)
 			else:
 				Global.player_health = (Global.player_health - 10)
+
 		else:
 			if Input.is_action_pressed("block"):
 				Global.player_health = (Global.player_health - 13)
 			else:
 				Global.player_health = (Global.player_health - 15)
 		print(Global.player_health)
+	
+	#elif Global.boss_phase_2:
+		#match Global.phase2_which_attack:
+			#0:
+				#Global.player_health -= 15
+			#1:
+				#Global.player_health -= 15
+			#2:
+				#Global.player_health -= 30
+
+
+func _on_phase_2_timer_1_timeout():
+	Global.player_health -= 15
+
+func _on_phase_2_timer_2_timeout():
+	Global.player_health -= 15
+
+func _on_phase_2_timer_3_timeout():
+	Global.player_health -= 30
