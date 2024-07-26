@@ -18,12 +18,14 @@ signal cat_cat
 
 signal transformation_submenu_active
 
-func _ready():
+func _process(delta):
 	if Global.player_turn == true:
 		$"Primary UI".show()
 	elif Global.player_turn == false:
 		$"Primary UI".hide()
 		partner_turn.emit()
+	if Global.player_health > 200:
+		Global.player_health = 200
 
 func _on_placeholderboss_player_turn():
 		$"Primary UI".show()
@@ -35,11 +37,11 @@ func _on_attack_pressed():
 		transformation_submenu_active.emit()
 		if Global.beast1 == true:
 			pass
+	Global.player_turn = false
 	partner_turn.emit()
 
 #code doing with partner transformations
 func _on_partner_pressed():
-	Global.player_turn = false
 	$"Primary UI".hide()
 	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file("res://partner_shadowplay.tscn")
@@ -69,4 +71,39 @@ func _on_transformations_beast_2_transformation():
 func _on_transformations_beast_3_transformation():
 	Global.beast3 = true
 	Global.three_turn_countdown = 3
-	
+
+#weaken is boss damage * 0.9
+#block is boss damage * 0.9
+#shield is boss damage * 0.8
+#ultra weaken is boss damage * 0.8
+#ultra shield is bossdamage * 0.7
+
+func _on_timer_timeout():
+	if Global.boss_phase_1:
+		if Global.boss_weakened:
+			if Input.is_action_pressed("block"):
+				Global.player_health = (Global.player_health - 12)
+			else:
+				Global.player_health = (Global.player_health - 13)
+			if Global.player_shield == true:
+				Global.player_health = (Global.player_health - 10)
+		elif Global.boss_ultra_weakened:
+			if Input.is_action_pressed("block"):
+				Global.player_health = (Global.player_health - 10)
+			elif Global.player_shield:
+				Global.player_health = (Global.player_health - 9)
+			else:
+				Global.player_health = (Global.player_health - 12)
+		elif Global.player_shield:
+			Global.player_health = (Global.player_health - 12)
+		elif Global.player_ultra_shield:
+			if Global.boss_weakened:
+				Global.player_health = (Global.player_health - 9)
+			else:
+				Global.player_health = (Global.player_health - 10)
+		else:
+			if Input.is_action_pressed("block"):
+				Global.player_health = (Global.player_health - 13)
+			else:
+				Global.player_health = (Global.player_health - 15)
+		print(Global.player_health)

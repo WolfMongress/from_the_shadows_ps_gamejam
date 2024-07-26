@@ -29,6 +29,7 @@ offset_right = 76.0
 offset_bottom = 158.0
 max_value = 500.0
 value = 500.0
+show_percentage = false
 script = ExtResource("2_webs8")
 
 [connection signal="boss_health_bar" from="." to="ProgressBar" method="_on_placeholderboss_boss_health_bar"]

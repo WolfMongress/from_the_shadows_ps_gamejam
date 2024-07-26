@@ -13,6 +13,11 @@ var player_turn = true
 var boss_turn = false
 var boss_phase_1 = true
 
+var boss_weakened
+var boss_ultra_weakened
+var player_shield
+var player_ultra_shield
+
 var three_turn_countdown = 0
 
 var primary_ui_state = false

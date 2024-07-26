@@ -176,4 +176,5 @@ func _on_ok_button_pressed():
 		Global.elephant_bear = false
 		Global.elephant_cat = false
 		Global.elephant_elephant = false
+	Global.player_turn = false
 	get_tree().change_scene_to_file("res://battle_scene.tscn")

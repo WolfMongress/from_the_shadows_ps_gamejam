@@ -59,6 +59,7 @@ texture = SubResource("PlaceholderTexture2D_duloe")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Projectile/Path2D/PathFollow2D/StaticBody2D"]
 shape = SubResource("CircleShape2D_cg8r8")
 
+[connection signal="timeout" from="Timer" to="Alchemia" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="Enemy Projectile" method="_on_timer_timeout"]
 [connection signal="player_turn" from="boss" to="Alchemia" method="_on_placeholderboss_player_turn"]
 [connection signal="attacking_regular" from="Alchemia" to="boss" method="_on_alchemia_attacking_regular"]
