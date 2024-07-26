@@ -21,3 +21,7 @@ func _on_item_activated(index):
 		Global.player_shield = true
 		Global.weakness_potion -= 1
 	remove_item(index)
+
+
+func _on_items_pressed():
+	visible = not visible

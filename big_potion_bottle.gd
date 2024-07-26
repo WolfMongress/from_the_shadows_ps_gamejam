@@ -44,7 +44,5 @@ func _on_brew_button_pressed():
 		Global.stinging_nettle_amount = (Global.stinging_nettle_amount - 1)
 		Global.shadow_crystal_amount = (Global.shadow_crystal_amount - 1)
 		Global.star_fragment_amount = (Global.star_fragment_amount - 1)
-	else:
-		pass
 	Global.player_turn = true
 	get_tree().change_scene_to_file("res://battle_scene.tscn")

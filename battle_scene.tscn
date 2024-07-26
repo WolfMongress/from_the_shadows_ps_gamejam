@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://c83ev5p2gx8np"]
+[gd_scene load_steps=14 format=3 uid="uid://c83ev5p2gx8np"]
 
 [ext_resource type="PackedScene" uid="uid://csweymfv4kvk1" path="res://boss.tscn" id="1_gyqp6"]
-[ext_resource type="Script" path="res://battle_scene.gd" id="1_ohibv"]
 [ext_resource type="PackedScene" uid="uid://dqwdrmf7pnjwg" path="res://alchemia.tscn" id="2_b3pwu"]
 [ext_resource type="PackedScene" uid="uid://bgcl5q3337mxs" path="res://partner.tscn" id="4_85tkj"]
 [ext_resource type="Script" path="res://enemy_projectile.gd" id="5_3ucay"]
@@ -29,11 +28,14 @@ point_count = 2
 size = Vector2(50, 50)
 
 [sub_resource type="Curve2D" id="Curve2D_oyoen"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, -158.364, 15.102, 158.364, -15.102, 419, -155, 0, 0, 0, 0, 690, -28)
+}
+point_count = 3
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_uivlu"]
 
 [node name="battle_scene" type="Node2D"]
-script = ExtResource("1_ohibv")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.8
@@ -107,33 +109,39 @@ projectile_timer = NodePath("Plasma Blast TImer")
 metadata/_edit_group_ = true
 
 [node name="Plasma Blast TImer" type="Timer" parent="Plasma Blast Projectile"]
-wait_time = 2.4
+wait_time = 1.2
 one_shot = true
 
-[node name="Path2D" type="Path2D" parent="Plasma Blast Projectile"]
+[node name="Plasma Path" type="Path2D" parent="Plasma Blast Projectile"]
 curve = SubResource("Curve2D_66y52")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Plasma Blast Projectile/Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Plasma Blast Projectile/Plasma Path"]
 position = Vector2(269, 465)
 
-[node name="Sprite2D" type="Sprite2D" parent="Plasma Blast Projectile/Path2D/PathFollow2D"]
+[node name="Plasma Blast" type="Sprite2D" parent="Plasma Blast Projectile/Plasma Path/PathFollow2D"]
 position = Vector2(1, 0)
 scale = Vector2(-1, 1)
 texture = SubResource("PlaceholderTexture2D_cpqhf")
 
-[node name="Claw Strike Leap" type="Node2D" parent="."]
-visible = false
+[node name="Claw Strike Leap" type="Node2D" parent="." node_paths=PackedStringArray("leap_timer")]
 position = Vector2(257, 506)
 script = ExtResource("7_obfxi")
+leap_timer = NodePath("Leap Timer")
+metadata/_edit_group_ = true
 
-[node name="Timer" type="Timer" parent="Claw Strike Leap"]
+[node name="Leap Timer" type="Timer" parent="Claw Strike Leap"]
+wait_time = 2.5
 
-[node name="Path2D" type="Path2D" parent="Claw Strike Leap"]
+[node name="Leap Strike Path" type="Path2D" parent="Claw Strike Leap"]
+scale = Vector2(0.953623, 1)
 curve = SubResource("Curve2D_oyoen")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Claw Strike Leap/Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Claw Strike Leap/Leap Strike Path"]
+rotation = -0.354317
+rotates = false
 
-[node name="Claw Strike `Alchemia`" type="Sprite2D" parent="Claw Strike Leap/Path2D/PathFollow2D"]
+[node name="Claw Strike `Alchemia`" type="Sprite2D" parent="Claw Strike Leap/Leap Strike Path/PathFollow2D"]
+rotation = 0.366519
 scale = Vector2(101, 150)
 texture = SubResource("PlaceholderTexture2D_uivlu")
 
@@ -161,4 +169,6 @@ texture = SubResource("PlaceholderTexture2D_uivlu")
 [connection signal="partner_turn" from="Alchemia" to="partner" method="_on_alchemia_partner_turn"]
 [connection signal="boss_turn" from="partner" to="Enemy Projectile" method="_on_partner_boss_turn"]
 [connection signal="timeout" from="Plasma Blast Projectile/Plasma Blast TImer" to="boss" method="_on_plasma_blast_t_imer_timeout"]
+[connection signal="timeout" from="Plasma Blast Projectile/Plasma Blast TImer" to="Alchemia" method="_on_plasma_blast_t_imer_timeout"]
 [connection signal="timeout" from="Plasma Blast Projectile/Plasma Blast TImer" to="Plasma Blast Projectile" method="_on_plasma_blast_t_imer_timeout"]
+[connection signal="timeout" from="Claw Strike Leap/Leap Timer" to="Claw Strike Leap" method="_on_leap_timer_timeout"]

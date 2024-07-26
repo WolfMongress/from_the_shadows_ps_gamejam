@@ -26,6 +26,11 @@ func _process(delta):
 		#Global.partner_turn = true
 	if Global.player_health > 200:
 		Global.player_health = 200
+	if Global.three_turn_countdown == 0:
+		Global.transformed = false
+		Global.beast1 = false
+		Global.beast2 = false
+		Global.beast3 = false
 
 func _on_placeholderboss_player_turn():
 		$"Primary UI".show()
@@ -70,6 +75,8 @@ func _on_items_pressed():
 	Global.player_turn = false
 	get_tree().change_scene_to_file("res://item_alchemy.tscn")
 
+
+
 #code doing with player transformations
 func _on_alchemia_pressed():
 	Global.player_turn = false
@@ -97,11 +104,17 @@ func _on_transformations_beast_3_transformation():
 func _on_plasma_blast_pressed():
 	Global.beast1_ranged = true
 	Global.three_turn_countdown = (Global.three_turn_countdown - 1)
+	$"Primary UI/Attack/Transformation Submenu/Plasma Blast".hide()
+	$"Primary UI/Attack/Transformation Submenu/Claw Strike".hide()
+	$"Primary UI/Attack/Transformation Submenu".hide()
 
 func _on_claw_strike_pressed():
-	Global.beast1_ranged = true
+	Global.beast1_melee = true
 	Global.three_turn_countdown = (Global.three_turn_countdown - 1)
 	hide()
+	$"Primary UI/Attack/Transformation Submenu/Plasma Blast".hide()
+	$"Primary UI/Attack/Transformation Submenu/Claw Strike".hide()
+	$"Primary UI/Attack/Transformation Submenu".hide()
 
 #weaken is boss damage * 0.9
 #block is boss damage * 0.9

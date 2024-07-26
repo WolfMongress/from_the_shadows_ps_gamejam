@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var path_follow : PathFollow2D = $Path2D/PathFollow2D
+@onready var path_follow : PathFollow2D = $"Plasma Path/PathFollow2D"
 
-@export var speed = 300
+@export var speed = 600
 
 var projectile_out = false
 
@@ -21,6 +21,6 @@ func _process(delta):
 func _on_plasma_blast_t_imer_timeout():
 	projectile_out = false
 	Global.beast1_ranged = false
-	Global.boss_turn = true
+	Global.partner_turn = true
 	self.hide()
-	$Path2D/PathFollow2D.progress_ratio = 0
+	$"Plasma Path/PathFollow2D".progress_ratio = 0
