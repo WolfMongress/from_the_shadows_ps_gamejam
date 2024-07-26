@@ -20,17 +20,23 @@ radius = 10.7831
 [node name="battle_scene" type="Node2D"]
 script = ExtResource("1_ohibv")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.8
+one_shot = true
+
 [node name="boss" parent="." instance=ExtResource("1_gyqp6")]
 position = Vector2(1046, 468)
 
 [node name="Alchemia" parent="." instance=ExtResource("2_b3pwu")]
 position = Vector2(257, 506)
+monitorable = true
 
 [node name="partner" parent="." instance=ExtResource("4_85tkj")]
 position = Vector2(135, 554)
 
-[node name="Enemy Projectile" type="Node2D" parent="."]
+[node name="Enemy Projectile" type="Node2D" parent="." node_paths=PackedStringArray("phase1_timer")]
 script = ExtResource("5_3ucay")
+phase1_timer = NodePath("../Timer")
 metadata/_edit_group_ = true
 
 [node name="Path2D" type="Path2D" parent="Enemy Projectile"]
@@ -53,13 +59,12 @@ texture = SubResource("PlaceholderTexture2D_duloe")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Projectile/Path2D/PathFollow2D/StaticBody2D"]
 shape = SubResource("CircleShape2D_cg8r8")
 
+[connection signal="timeout" from="Timer" to="Enemy Projectile" method="_on_timer_timeout"]
 [connection signal="player_turn" from="boss" to="Alchemia" method="_on_placeholderboss_player_turn"]
 [connection signal="attacking_regular" from="Alchemia" to="boss" method="_on_alchemia_attacking_regular"]
 [connection signal="bear_bear" from="Alchemia" to="partner" method="_on_alchemia_bear_bear"]
 [connection signal="bear_cat" from="Alchemia" to="partner" method="_on_alchemia_bear_cat"]
 [connection signal="bear_elephant" from="Alchemia" to="partner" method="_on_alchemia_bear_elephant"]
-[connection signal="body_entered" from="Alchemia" to="Alchemia" method="_on_body_entered"]
-[connection signal="body_shape_entered" from="Alchemia" to="Alchemia" method="_on_body_shape_entered"]
 [connection signal="cat_bear" from="Alchemia" to="partner" method="_on_alchemia_cat_bear"]
 [connection signal="cat_cat" from="Alchemia" to="partner" method="_on_alchemia_cat_cat"]
 [connection signal="cat_elephant" from="Alchemia" to="partner" method="_on_alchemia_cat_elephant"]
