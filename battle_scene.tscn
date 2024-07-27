@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c83ev5p2gx8np"]
+[gd_scene load_steps=16 format=3 uid="uid://c83ev5p2gx8np"]
 
 [ext_resource type="PackedScene" uid="uid://csweymfv4kvk1" path="res://boss.tscn" id="1_gyqp6"]
 [ext_resource type="PackedScene" uid="uid://dqwdrmf7pnjwg" path="res://alchemia.tscn" id="2_b3pwu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://enemy_projectile.gd" id="5_3ucay"]
 [ext_resource type="Script" path="res://plasma_bolt_projectile.gd" id="6_h223l"]
 [ext_resource type="Script" path="res://claw_strike_leap.gd" id="7_obfxi"]
+[ext_resource type="Script" path="res://mega_bottle_arc.gd" id="7_wvsbh"]
 
 [sub_resource type="Curve2D" id="Curve2D_c6x4t"]
 _data = {
@@ -34,6 +35,12 @@ _data = {
 point_count = 3
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_uivlu"]
+
+[sub_resource type="Curve2D" id="Curve2D_q12sh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 223, 422, -122.23, -3.9685, 122.23, 3.9685, 576, 226, 0, 0, 0, 0, 980, 398)
+}
+point_count = 3
 
 [node name="battle_scene" type="Node2D"]
 
@@ -124,6 +131,7 @@ scale = Vector2(-1, 1)
 texture = SubResource("PlaceholderTexture2D_cpqhf")
 
 [node name="Claw Strike Leap" type="Node2D" parent="." node_paths=PackedStringArray("leap_timer")]
+visible = false
 position = Vector2(257, 506)
 script = ExtResource("7_obfxi")
 leap_timer = NodePath("Leap Timer")
@@ -144,6 +152,22 @@ rotates = false
 rotation = 0.366519
 scale = Vector2(101, 150)
 texture = SubResource("PlaceholderTexture2D_uivlu")
+
+[node name="Mega Bottle Bottle" type="Node2D" parent="." node_paths=PackedStringArray("flight_timer")]
+script = ExtResource("7_wvsbh")
+flight_timer = NodePath("Mega Bottle Flight")
+metadata/_edit_group_ = true
+
+[node name="Mega Bottle Flight" type="Timer" parent="Mega Bottle Bottle"]
+
+[node name="Mega Bottle Arc" type="Path2D" parent="Mega Bottle Bottle"]
+curve = SubResource("Curve2D_q12sh")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Mega Bottle Bottle/Mega Bottle Arc"]
+position = Vector2(223, 422)
+rotation = -0.506858
+
+[node name="Mega Bottle" type="Sprite2D" parent="Mega Bottle Bottle/Mega Bottle Arc/PathFollow2D"]
 
 [connection signal="timeout" from="Timer" to="Alchemia" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="Enemy Projectile" method="_on_timer_timeout"]
@@ -171,4 +195,6 @@ texture = SubResource("PlaceholderTexture2D_uivlu")
 [connection signal="timeout" from="Plasma Blast Projectile/Plasma Blast TImer" to="boss" method="_on_plasma_blast_t_imer_timeout"]
 [connection signal="timeout" from="Plasma Blast Projectile/Plasma Blast TImer" to="Alchemia" method="_on_plasma_blast_t_imer_timeout"]
 [connection signal="timeout" from="Plasma Blast Projectile/Plasma Blast TImer" to="Plasma Blast Projectile" method="_on_plasma_blast_t_imer_timeout"]
+[connection signal="timeout" from="Claw Strike Leap/Leap Timer" to="boss" method="_on_leap_timer_timeout"]
 [connection signal="timeout" from="Claw Strike Leap/Leap Timer" to="Claw Strike Leap" method="_on_leap_timer_timeout"]
+[connection signal="timeout" from="Mega Bottle Bottle/Mega Bottle Flight" to="Mega Bottle Bottle" method="_on_mega_bottle_flight_timeout"]

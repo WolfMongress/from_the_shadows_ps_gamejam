@@ -44,6 +44,7 @@ text = "Attack"
 script = ExtResource("2_85lj6")
 
 [node name="Transformation Submenu" type="VBoxContainer" parent="Primary UI/Attack"]
+visible = false
 layout_mode = 0
 offset_left = 102.0
 offset_top = -13.0
@@ -66,7 +67,7 @@ offset_left = 112.0
 offset_top = -12.0
 offset_right = 415.472
 offset_bottom = 27.37
-text = "Shoots a long range ball of plasma out of mouth dealing 30-40 damage."
+text = "Shoots a long range ball of plasma out of mouth dealing 40-80 damage."
 editable = false
 context_menu_enabled = false
 shortcut_keys_enabled = false
@@ -86,11 +87,11 @@ script = ExtResource("4_6mcjn")
 [node name="Claw Strike Description" type="TextEdit" parent="Primary UI/Attack/Transformation Submenu/Claw Strike"]
 visible = false
 layout_mode = 0
-offset_left = 111.0
-offset_top = 2.0
-offset_right = 483.0
-offset_bottom = 74.0
-text = "Leaps forward and obliterates anything in its way with razor sharp claws. Deals 30-40 dmg."
+offset_left = 104.0
+offset_top = -31.0
+offset_right = 507.0
+offset_bottom = 62.0
+text = "Leaps forward and obliterates anything in its way with razor sharp claws. Deals 30-60 dmg but can reach up to 90 with correct timing."
 editable = false
 wrap_mode = 1
 
@@ -103,9 +104,10 @@ script = ExtResource("5_3vlba")
 [node name="Mega Bottle Description" type="TextEdit" parent="Primary UI/Attack/Transformation Submenu/Mega Bottle"]
 visible = false
 layout_mode = 0
-offset_left = 108.0
-offset_right = 526.0
-offset_bottom = 65.0
+offset_left = 105.0
+offset_top = -17.0
+offset_right = 523.0
+offset_bottom = 48.0
 text = "Throws a massive concoction of potions which poisons anybody who gets hit and deals 25 dmg."
 editable = false
 wrap_mode = 1
@@ -119,9 +121,10 @@ script = ExtResource("6_yg6by")
 [node name="Cloak Slap Description" type="TextEdit" parent="Primary UI/Attack/Transformation Submenu/Cloak Slap"]
 visible = false
 layout_mode = 0
-offset_left = 106.0
-offset_right = 524.0
-offset_bottom = 66.0
+offset_left = 107.0
+offset_top = -16.0
+offset_right = 525.0
+offset_bottom = 50.0
 text = "Runs up to an enemy and slaps them with super heavy cloak dazing them and dealing 20 dmg."
 editable = false
 wrap_mode = 1
@@ -129,15 +132,17 @@ wrap_mode = 1
 [node name="Supersonic Roar" type="Button" parent="Primary UI/Attack/Transformation Submenu"]
 visible = false
 layout_mode = 2
-text = "Psionic Roar"
+text = "Supersonic
+ Roar"
 script = ExtResource("7_jvtqg")
 
 [node name="Supersonic Roar Description" type="TextEdit" parent="Primary UI/Attack/Transformation Submenu/Supersonic Roar"]
 visible = false
 layout_mode = 0
-offset_left = 110.0
-offset_right = 552.0
-offset_bottom = 64.0
+offset_left = 97.0
+offset_top = -4.0
+offset_right = 539.0
+offset_bottom = 60.0
 text = "Roars so inanely loudly that it blasts the eardrums of anybody who hears and dazes them. Deals 25 dmg."
 editable = false
 wrap_mode = 1
@@ -151,9 +156,10 @@ script = ExtResource("8_a48ly")
 [node name="Body Slam Description" type="TextEdit" parent="Primary UI/Attack/Transformation Submenu/Body Slam"]
 visible = false
 layout_mode = 0
-offset_left = 111.0
-offset_right = 514.0
-offset_bottom = 63.0
+offset_left = 95.0
+offset_top = -19.0
+offset_right = 498.0
+offset_bottom = 44.0
 text = "Jumps up into the air and slams down on enemy dealing 50 - 60 dmg but causes you to be dazed."
 editable = false
 wrap_mode = 1

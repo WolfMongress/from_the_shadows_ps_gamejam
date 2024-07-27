@@ -25,7 +25,19 @@ func _on_plasma_blast_t_imer_timeout():
 		pass
 	else:
 		#original damage = 40
-		Global.boss_health = (Global.boss_health - (randi_range(0, 80) + 10))
-		boss_health = Global.boss_health
-		boss_health_bar.emit(boss_health)
-		boss_health_check()
+		Global.boss_health = (Global.boss_health - (randi_range(40, 80)))
+	boss_health = Global.boss_health
+	boss_health_bar.emit(boss_health)
+	boss_health_check()
+
+func _on_leap_timer_timeout():
+	if Global.boss_shield_active:
+		pass
+	else:
+		if Input.is_action_pressed("action_command"):
+			Global.boss_health = (Global.boss_health - (randi_range(50, 90)))
+		else:
+			Global.boss_health = (Global.boss_health - (randi_range(30, 60)))
+	boss_health = Global.boss_health
+	boss_health_bar.emit(boss_health)
+	boss_health_check()

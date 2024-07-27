@@ -12,7 +12,7 @@ func _process(delta):
 	if Global.beast1_melee != false:
 		path_follow.progress += speed * delta
 		if not leap_active:
-			Global.player_turn
+			Global.player_turn = false
 			show()
 			leap_timer.start()
 			leap_active = true

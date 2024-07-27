@@ -72,6 +72,8 @@ func _on_partner_pressed():
 	Global.elephant_bear = false
 	Global.elephant_cat = false
 	Global.elephant_elephant = false
+	if Global.three_turn_countdown >= 1:
+		Global.three_turn_countdown = (Global.three_turn_countdown - 1)
 	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file("res://partner_shadowplay.tscn")
 
