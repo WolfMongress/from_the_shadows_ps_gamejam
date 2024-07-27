@@ -29,20 +29,44 @@ func _on_body_exited(body):
 	print(array)
 
 func _on_brew_button_pressed():
-	if array == ["Goldenseal", "Shadow Crystal", "Star Fragment"]:
-		Global.heal_potion += 1
-		Global.goldenseal_amount = (Global.goldenseal_amount - 1)
-		Global.shadow_crystal_amount = (Global.shadow_crystal_amount - 1)
-		Global.star_fragment_amount = (Global.star_fragment_amount - 1)
-	elif array == ["Armoranth", "Shadow Crystal", "Star Fragment"]:
-		Global.defense_potion += 1
-		Global.armoranth_amount = (Global.armoranth_amount - 1)
-		Global.shadow_crystal_amount = (Global.shadow_crystal_amount - 1)
-		Global.star_fragment_amount = (Global.star_fragment_amount - 1)
-	elif array == ["Stinging Nettle", "Shadow Crystal", "Star Fragment"]:
-		Global.weakness_potion += 1
-		Global.stinging_nettle_amount = (Global.stinging_nettle_amount - 1)
-		Global.shadow_crystal_amount = (Global.shadow_crystal_amount - 1)
-		Global.star_fragment_amount = (Global.star_fragment_amount - 1)
+	
+	if array.size() != 3:
+		pass
+	elif array.has("Shadow Crystal") and array.has("Star Fragment"):
+		if array.has("Goldenseal"):
+			Global.heal_potion += 1
+			Global.goldenseal_amount = (Global.goldenseal_amount - 1)
+			Global.shadow_crystal_amount = (Global.shadow_crystal_amount - 1)
+			Global.star_fragment_amount = (Global.star_fragment_amount - 1)
+		elif array.has("Armoranth"):
+			Global.defense_potion += 1
+			Global.armoranth_amount = (Global.armoranth_amount - 1)
+			Global.shadow_crystal_amount = (Global.shadow_crystal_amount - 1)
+			Global.star_fragment_amount = (Global.star_fragment_amount - 1)
+		elif array.has("Stinging Nettle"):
+			Global.weakness_potion += 1
+			Global.stinging_nettle_amount = (Global.stinging_nettle_amount - 1)
+			Global.shadow_crystal_amount = (Global.shadow_crystal_amount - 1)
+			Global.star_fragment_amount = (Global.star_fragment_amount - 1)
+			
+	#if array == ["Goldenseal", "Shadow Crystal", "Star Fragment"]:
+		#Global.heal_potion += 1
+		#Global.goldenseal_amount = (Global.goldenseal_amount - 1)
+		#Global.shadow_crystal_amount = (Global.shadow_crystal_amount - 1)
+		#Global.star_fragment_amount = (Global.star_fragment_amount - 1)
+	#elif array == ["Armoranth", "Shadow Crystal", "Star Fragment"]:
+		#Global.defense_potion += 1
+		#Global.armoranth_amount = (Global.armoranth_amount - 1)
+		#Global.shadow_crystal_amount = (Global.shadow_crystal_amount - 1)
+		#Global.star_fragment_amount = (Global.star_fragment_amount - 1)
+	#elif array == ["Stinging Nettle", "Shadow Crystal", "Star Fragment"]:
+		#Global.weakness_potion += 1
+		#Global.stinging_nettle_amount = (Global.stinging_nettle_amount - 1)
+		#Global.shadow_crystal_amount = (Global.shadow_crystal_amount - 1)
+		#Global.star_fragment_amount = (Global.star_fragment_amount - 1)
+		
 	Global.player_turn = true
+	print(Global.heal_potion)
+	print(Global.defense_potion)
+	print(Global.weakness_potion)
 	get_tree().change_scene_to_file("res://battle_scene.tscn")

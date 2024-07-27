@@ -18,6 +18,11 @@ signal cat_cat
 
 signal transformation_submenu_active
 
+func _ready():
+	print("beast 1: ", Global.beast1)
+	print("beast 2: ", Global.beast2)
+	print("beast 3: ", Global.beast3)
+
 func _process(delta):
 	if Global.player_turn == true:
 		$"Primary UI".show()
@@ -51,7 +56,7 @@ func _on_attack_pressed():
 			$"Primary UI/Attack/Transformation Submenu/Cloak Slap".show()
 		elif Global.beast3 == true:
 			$"Primary UI/Attack/Transformation Submenu".show()
-			$"Primary UI/Attack/Transformation Submenu/Psionic Roar".show()
+			$"Primary UI/Attack/Transformation Submenu/Supersonic Roar".show()
 			$"Primary UI/Attack/Transformation Submenu/Body Slam".show()
 
 
@@ -88,15 +93,21 @@ func _on_transformations_transformed():
 
 func _on_transformations_beast_1_transformation():
 	Global.beast1 = true
+	Global.beast2 = false
+	Global.beast3 = false
 	Global.three_turn_countdown = 3
 	Global.partner_turn = true
 
 func _on_transformations_beast_2_transformation():
+	Global.beast1 = false
 	Global.beast2 = true
+	Global.beast3 = false
 	Global.three_turn_countdown = 3
 	Global.partner_turn = true
 
 func _on_transformations_beast_3_transformation():
+	Global.beast1 = false
+	Global.beast2 = false
 	Global.beast3 = true
 	Global.three_turn_countdown = 3
 	Global.partner_turn = true

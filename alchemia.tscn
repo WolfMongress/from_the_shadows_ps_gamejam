@@ -1,13 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqwdrmf7pnjwg"]
+[gd_scene load_steps=16 format=3 uid="uid://dqwdrmf7pnjwg"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_dfq2s"]
 [ext_resource type="Script" path="res://attack_button.gd" id="2_85lj6"]
 [ext_resource type="Script" path="res://items_button.gd" id="3_ggpbo"]
 [ext_resource type="Script" path="res://plasma_button.gd" id="3_vlpnn"]
+[ext_resource type="Script" path="res://claw_button.gd" id="4_6mcjn"]
 [ext_resource type="Script" path="res://item_inventory.gd" id="4_aarr5"]
 [ext_resource type="Script" path="res://shadows_button.gd" id="4_h7vof"]
+[ext_resource type="Script" path="res://mega_bottle_button.gd" id="5_3vlba"]
 [ext_resource type="Script" path="res://shadows_submenu.gd" id="5_uc0xf"]
+[ext_resource type="Script" path="res://cloak_button.gd" id="6_yg6by"]
+[ext_resource type="Script" path="res://roar_button.gd" id="7_jvtqg"]
 [ext_resource type="Script" path="res://player_health_bar.gd" id="7_rd4oa"]
+[ext_resource type="Script" path="res://body_slam_button.gd" id="8_a48ly"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ro64n"]
 
@@ -39,7 +44,6 @@ text = "Attack"
 script = ExtResource("2_85lj6")
 
 [node name="Transformation Submenu" type="VBoxContainer" parent="Primary UI/Attack"]
-visible = false
 layout_mode = 0
 offset_left = 102.0
 offset_top = -13.0
@@ -77,61 +81,82 @@ wrap_mode = 1
 visible = false
 layout_mode = 2
 text = "Claw Strike"
+script = ExtResource("4_6mcjn")
 
 [node name="Claw Strike Description" type="TextEdit" parent="Primary UI/Attack/Transformation Submenu/Claw Strike"]
 visible = false
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 111.0
+offset_top = 2.0
+offset_right = 483.0
+offset_bottom = 74.0
 text = "Leaps forward and obliterates anything in its way with razor sharp claws. Deals 30-40 dmg."
+editable = false
+wrap_mode = 1
 
 [node name="Mega Bottle" type="Button" parent="Primary UI/Attack/Transformation Submenu"]
 visible = false
 layout_mode = 2
 text = "Mega Bottle"
+script = ExtResource("5_3vlba")
 
 [node name="Mega Bottle Description" type="TextEdit" parent="Primary UI/Attack/Transformation Submenu/Mega Bottle"]
 visible = false
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 108.0
+offset_right = 526.0
+offset_bottom = 65.0
 text = "Throws a massive concoction of potions which poisons anybody who gets hit and deals 25 dmg."
+editable = false
+wrap_mode = 1
 
 [node name="Cloak Slap" type="Button" parent="Primary UI/Attack/Transformation Submenu"]
 visible = false
 layout_mode = 2
 text = "Cloak Slap"
+script = ExtResource("6_yg6by")
 
 [node name="Cloak Slap Description" type="TextEdit" parent="Primary UI/Attack/Transformation Submenu/Cloak Slap"]
 visible = false
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 106.0
+offset_right = 524.0
+offset_bottom = 66.0
 text = "Runs up to an enemy and slaps them with super heavy cloak dazing them and dealing 20 dmg."
+editable = false
+wrap_mode = 1
 
 [node name="Supersonic Roar" type="Button" parent="Primary UI/Attack/Transformation Submenu"]
 visible = false
 layout_mode = 2
 text = "Psionic Roar"
+script = ExtResource("7_jvtqg")
 
 [node name="Supersonic Roar Description" type="TextEdit" parent="Primary UI/Attack/Transformation Submenu/Supersonic Roar"]
 visible = false
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 110.0
+offset_right = 552.0
+offset_bottom = 64.0
 text = "Roars so inanely loudly that it blasts the eardrums of anybody who hears and dazes them. Deals 25 dmg."
+editable = false
+wrap_mode = 1
 
 [node name="Body Slam" type="Button" parent="Primary UI/Attack/Transformation Submenu"]
 visible = false
 layout_mode = 2
 text = "Body Slam"
+script = ExtResource("8_a48ly")
 
 [node name="Body Slam Description" type="TextEdit" parent="Primary UI/Attack/Transformation Submenu/Body Slam"]
 visible = false
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 111.0
+offset_right = 514.0
+offset_bottom = 63.0
 text = "Jumps up into the air and slams down on enemy dealing 50 - 60 dmg but causes you to be dazed."
+editable = false
+wrap_mode = 1
 
 [node name="Items" type="Button" parent="Primary UI"]
 layout_mode = 2
@@ -193,7 +218,17 @@ script = ExtResource("7_rd4oa")
 [connection signal="mouse_entered" from="Primary UI/Attack/Transformation Submenu/Plasma Blast" to="Primary UI/Attack/Transformation Submenu/Plasma Blast" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Primary UI/Attack/Transformation Submenu/Plasma Blast" to="Primary UI/Attack/Transformation Submenu/Plasma Blast" method="_on_mouse_exited"]
 [connection signal="pressed" from="Primary UI/Attack/Transformation Submenu/Plasma Blast" to="." method="_on_plasma_blast_pressed"]
+[connection signal="mouse_entered" from="Primary UI/Attack/Transformation Submenu/Claw Strike" to="Primary UI/Attack/Transformation Submenu/Claw Strike" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Primary UI/Attack/Transformation Submenu/Claw Strike" to="Primary UI/Attack/Transformation Submenu/Claw Strike" method="_on_mouse_exited"]
 [connection signal="pressed" from="Primary UI/Attack/Transformation Submenu/Claw Strike" to="." method="_on_claw_strike_pressed"]
+[connection signal="mouse_entered" from="Primary UI/Attack/Transformation Submenu/Mega Bottle" to="Primary UI/Attack/Transformation Submenu/Mega Bottle" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Primary UI/Attack/Transformation Submenu/Mega Bottle" to="Primary UI/Attack/Transformation Submenu/Mega Bottle" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Primary UI/Attack/Transformation Submenu/Cloak Slap" to="Primary UI/Attack/Transformation Submenu/Cloak Slap" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Primary UI/Attack/Transformation Submenu/Cloak Slap" to="Primary UI/Attack/Transformation Submenu/Cloak Slap" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Primary UI/Attack/Transformation Submenu/Supersonic Roar" to="Primary UI/Attack/Transformation Submenu/Supersonic Roar" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Primary UI/Attack/Transformation Submenu/Supersonic Roar" to="Primary UI/Attack/Transformation Submenu/Supersonic Roar" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Primary UI/Attack/Transformation Submenu/Body Slam" to="Primary UI/Attack/Transformation Submenu/Body Slam" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Primary UI/Attack/Transformation Submenu/Body Slam" to="Primary UI/Attack/Transformation Submenu/Body Slam" method="_on_mouse_exited"]
 [connection signal="pressed" from="Primary UI/Items" to="Primary UI/Attack" method="_on_items_pressed"]
 [connection signal="pressed" from="Primary UI/Items" to="Primary UI/Items/ItemList" method="_on_items_pressed"]
 [connection signal="pressed" from="Primary UI/Items" to="Primary UI/Alchemy" method="_on_items_pressed"]

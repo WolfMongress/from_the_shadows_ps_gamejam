@@ -3,6 +3,8 @@ extends Node
 var boss_health = 500
 var player_health = 200
 
+var phase2_health = 1000
+
 var beast1 = false
 var beast2 = false
 var beast3 = false

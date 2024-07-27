@@ -13,10 +13,10 @@ func _on_left_pressed():
 	if beast1 == true:
 		beast1 = false
 		beast3 = true
-	if beast2 == true:
+	elif beast2 == true:
 		beast2 = false
 		beast1 = true
-	if beast3 == true:
+	elif beast3 == true:
 		beast3 = false
 		beast2 = true
 
@@ -24,10 +24,10 @@ func _on_right_pressed():
 	if beast1 == true:
 		beast1 = false
 		beast2 = true
-	if beast2 == true:
+	elif beast2 == true:
 		beast2 = false
 		beast3 = true
-	if beast3 == true:
+	elif beast3 == true:
 		beast3 = false
 		beast1 = true
 
