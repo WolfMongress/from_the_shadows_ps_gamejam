@@ -11,7 +11,7 @@ var flight = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Global.beast2_ranged != false:
-		path_follow.progress = speed * delta
+		path_follow.progress += speed * delta
 		if not flight:
 			Global.player_turn = false
 			show()

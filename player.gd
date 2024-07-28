@@ -82,8 +82,6 @@ func _on_items_pressed():
 	Global.player_turn = false
 	get_tree().change_scene_to_file("res://item_alchemy.tscn")
 
-
-
 #code doing with player transformations
 func _on_alchemia_pressed():
 	Global.player_turn = false
@@ -129,6 +127,36 @@ func _on_claw_strike_pressed():
 	$"Primary UI/Attack/Transformation Submenu/Claw Strike".hide()
 	$"Primary UI/Attack/Transformation Submenu".hide()
 
+func _on_mega_bottle_pressed():
+	Global.beast2_ranged = true
+	Global.three_turn_countdown = (Global.three_turn_countdown - 1)
+	$"Primary UI/Attack/Transformation Submenu/Mega Bottle".hide()
+	$"Primary UI/Attack/Transformation Submenu/Cloak Slap".hide()
+	$"Primary UI/Attack/Transformation Submenu".hide()
+
+func _on_cloak_slap_pressed():
+	Global.beast2_melee = true
+	Global.three_turn_countdown = (Global.three_turn_countdown - 1)
+	hide()
+	$"Primary UI/Attack/Transformation Submenu/Mega Bottle".hide()
+	$"Primary UI/Attack/Transformation Submenu/Cloak Slap".hide()
+	$"Primary UI/Attack/Transformation Submenu".hide()
+
+func _on_supersonic_roar_pressed():
+	Global.beast3_ranged = true
+	Global.three_turn_countdown = (Global.three_turn_countdown - 1)
+	$"Primary UI/Attack/Transformation Submenu/Supersonic Roar".hide()
+	$"Primary UI/Attack/Transformation Submenu/Body Slam".hide()
+	$"Primary UI".hide()
+
+func _on_body_slam_pressed():
+	Global.beast3_melee = true
+	Global.three_turn_countdown = (Global.three_turn_countdown - 1)
+	hide()
+	$"Primary UI/Attack/Transformation Submenu/Supersonic Roar".hide()
+	$"Primary UI/Attack/Transformation Submenu/Body Slam".hide()
+	$"Primary UI".hide()
+
 #weaken is boss damage * 0.9
 #block is boss damage * 0.9
 #shield is boss damage * 0.8
@@ -136,47 +164,145 @@ func _on_claw_strike_pressed():
 #ultra shield is bossdamage * 0.7
 
 func _on_timer_timeout():
-	if Global.boss_phase_1:
-		if Global.boss_weakened:
-			if Input.is_action_pressed("block"):
-				Global.player_health = (Global.player_health - 12)
-			else:
-				Global.player_health = (Global.player_health - 13)
-			if Global.player_shield == true:
-				Global.player_health = (Global.player_health - 10)
-		elif Global.boss_ultra_weakened:
-			if Input.is_action_pressed("block"):
-				Global.player_health = (Global.player_health - 10)
-			elif Global.player_shield:
-				Global.player_health = (Global.player_health - 9)
-			else:
-				Global.player_health = (Global.player_health - 12)
-		elif Global.player_shield:
+	if Global.boss_weakened:
+		if Input.is_action_pressed("block"):
 			Global.player_health = (Global.player_health - 12)
-		elif Global.player_ultra_shield:
-			if Global.boss_weakened:
-				Global.player_health = (Global.player_health - 9)
-			else:
-				Global.player_health = (Global.player_health - 10)
+		elif Global.player_shield == true:
+			Global.player_health = (Global.player_health - 10)
 		else:
-			if Input.is_action_pressed("block"):
-				Global.player_health = (Global.player_health - 13)
-			else:
-				Global.player_health = (Global.player_health - 15)
-		Global.boss_ultra_weakened = false
-		Global.boss_weakened = false
-		Global.player_ultra_shield = false
-		Global.player_shield = false
-		print(Global.player_health)
+			Global.player_health = (Global.player_health - 13)
+	elif Global.boss_ultra_weakened:
+		if Input.is_action_pressed("block"):
+			Global.player_health = (Global.player_health - 10)
+		elif Global.player_shield:
+			Global.player_health = (Global.player_health - 9)
+		else:
+			Global.player_health = (Global.player_health - 12)
+	elif Global.player_shield:
+		Global.player_health = (Global.player_health - 12)
+	elif Global.player_ultra_shield:
+		if Global.boss_weakened:
+			Global.player_health = (Global.player_health - 9)
+		else:
+			Global.player_health = (Global.player_health - 10)
+	else:
+		if Input.is_action_pressed("block"):
+			Global.player_health = (Global.player_health - 13)
+		else:
+			Global.player_health = (Global.player_health - 15)
+	Global.boss_ultra_weakened = false
+	Global.boss_weakened = false
+	Global.player_ultra_shield = false
+	Global.player_shield = false
+	print(Global.player_health)
 
+#weaken is boss damage * 0.9
+#block is boss damage * 0.9
+#shield is boss damage * 0.8
+#ultra weaken is boss damage * 0.8
+#ultra shield is bossdamage * 0.7
 
-func _on_phase_2_attack_1_timeout():
-	Global.player_health -= 15
+func _on_phase_2_attack_1_timeout(): #first attack in 2nd phase damage stats
+	if Global.boss_weakened:
+		if Input.is_action_pressed("block"):
+			Global.player_health = (Global.player_health - 24)
+		elif Global.player_shield:
+			Global.player_health = (Global.player_health - 21)
+		else:
+			Global.player_health = (Global.player_health - 27)
+	elif Global.boss_ultra_weakened:
+		if Input.is_action_pressed("block"):
+			Global.player_health = (Global.player_health - 21)
+		elif Global.player_shield:
+			Global.player_health = (Global.player_health - 19)
+		else:
+			Global.player_health = (Global.player_health - 24)
+	elif Global.player_shield:
+		Global.player_health = (Global.player_health - 24)
+	elif Global.player_ultra_shield:
+		if Global.boss_weakened:
+			Global.player_health = (Global.player_health - 18)
+		else:
+			Global.player_health = (Global.player_health - 21)
+	else:
+		if Input.is_action_pressed("block"):
+			Global.player_health = (Global.player_health - 27)
+		else:
+			Global.player_health = (Global.player_health - 30)
+	Global.boss_ultra_weakened = false
+	Global.boss_weakened = false
+	Global.player_ultra_shield = false
+	Global.player_shield = false
+	print(Global.player_health)
 
+func _on_phase_2_attack_2_timeout():#second attack in 2nd phase stats
+	if Global.boss_weakened:
+		if Input.is_action_pressed("block"):
+			Global.player_health = (Global.player_health - 24)
+		elif Global.player_shield:
+			Global.player_health = (Global.player_health - 21)
+		else:
+			Global.player_health = (Global.player_health - 27)
+	elif Global.boss_ultra_weakened:
+		if Input.is_action_pressed("block"):
+			Global.player_health = (Global.player_health - 21)
+		elif Global.player_shield:
+			Global.player_health = (Global.player_health - 19)
+		else:
+			Global.player_health = (Global.player_health - 24)
+	elif Global.player_shield:
+		Global.player_health = (Global.player_health - 24)
+	elif Global.player_ultra_shield:
+		if Global.boss_weakened:
+			Global.player_health = (Global.player_health - 18)
+		else:
+			Global.player_health = (Global.player_health - 21)
+	else:
+		if Input.is_action_pressed("block"):
+			Global.player_health = (Global.player_health - 27)
+		else:
+			Global.player_health = (Global.player_health - 30)
+	Global.boss_ultra_weakened = false
+	Global.boss_weakened = false
+	Global.player_ultra_shield = false
+	Global.player_shield = false
+	print(Global.player_health)
 
-func _on_phase_2_attack_2_timeout():
-	Global.player_health -= 15
+#weaken is boss damage * 0.9
+#block is boss damage * 0.9
+#shield is boss damage * 0.8
+#ultra weaken is boss damage * 0.8
+#ultra shield is bossdamage * 0.7
 
-
-func _on_phase_2_attack_3_timeout():
-	Global.player_health -= 30
+func _on_phase_2_attack_3_timeout():#third attack in second phase attacks
+	if Global.boss_weakened:
+		if Input.is_action_pressed("block"):
+			Global.player_health = (Global.player_health - 48)
+		elif Global.player_shield:
+			Global.player_health = (Global.player_health - 43)
+		else:
+			Global.player_health = (Global.player_health - 54)
+	elif Global.boss_ultra_weakened:
+		if Input.is_action_pressed("block"):
+			Global.player_health = (Global.player_health - 43)
+		elif Global.player_shield:
+			Global.player_health = (Global.player_health - 38)
+		else:
+			Global.player_health = (Global.player_health - 48)
+	elif Global.player_shield:
+		Global.player_health = (Global.player_health - 48)
+	elif Global.player_ultra_shield:
+		if Global.boss_weakened:
+			Global.player_health = (Global.player_health - 37)
+		else:
+			Global.player_health = (Global.player_health - 42)
+	else:
+		if Input.is_action_pressed("block"):
+			Global.player_health = (Global.player_health - 54)
+		else:
+			Global.player_health = (Global.player_health - 60)
+	Global.boss_ultra_weakened = false
+	Global.boss_weakened = false
+	Global.player_ultra_shield = false
+	Global.player_shield = false
+	print(Global.player_health)

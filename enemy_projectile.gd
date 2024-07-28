@@ -24,7 +24,7 @@ var rng = RandomNumberGenerator.new()
 var bottle_counter = 3
 
 func _ready():
-	$Path2D/PathFollow2D.progress_ratio
+	$Path2D/PathFollow2D.progress_ratio = 0
 	hide()
 
 func _process(delta):
@@ -36,12 +36,14 @@ func _process(delta):
 				phase1_timer.start()
 				projectile_out = true
 			elif Global.boss_phase_2:
-				var which_attack = rng.randi_range(0,2)
+				var which_attack = rng.randi_range(0,3)
 				Global.phase2_which_attack = which_attack
 				match which_attack:
 					0:
 						projectile_out = true
 						print("a1")
+						show()
+						speed = 400
 						phase2_1_timer.start()
 					1:
 						projectile_out = true
@@ -51,18 +53,33 @@ func _process(delta):
 						projectile_out = true
 						print("a3")
 						phase2_3_2_timer.start()
+					3:
+						Global.boss_shield_active = true
+						print("a4")
+						Global.boss_turn = false
+						Global.player_turn = true
 
 func _on_timer_timeout():
-	Global.boss_turn = false
-	Global.player_turn = true
+	if Global.player_dazed == true:
+		Global.boss_turn = true
+		Global.player_dazed = false
+	else:
+		Global.boss_turn = false
+		Global.player_turn = true
 	projectile_out = false
 	self.hide()
 	$Path2D/PathFollow2D.progress_ratio = 0
 
 func _on_phase_2_attack_1_timeout():
-	Global.boss_turn = false
-	Global.player_turn = true
+	if Global.player_dazed == true:
+		Global.boss_turn = true
+		Global.player_dazed = false
+	else:
+		Global.boss_turn = false
+		Global.player_turn = true
 	projectile_out = false
+	self.hide()
+	$Path2D/PathFollow2D.progress_ratio = 0
 
 func _on_phase_2_attack_2_delay_timeout():
 	phase2_2_1_timer.start()

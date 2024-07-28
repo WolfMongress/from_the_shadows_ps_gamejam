@@ -3,6 +3,8 @@ extends Node
 var boss_health = 500
 var player_health = 200
 
+var boss_health_limits
+
 var phase2_health = 1000
 
 var beast1 = false
@@ -37,6 +39,12 @@ var player_ultra_shield
 var boss_poisoned
 var boss_dazed
 var player_dazed
+var player_poisoned
+
+var boss_poison_countdown = 0
+var boss_dazed_countdown = 0
+var player_poion_countdown = 0
+var player_dazed_countdown = 0
 
 var three_turn_countdown = 0
 

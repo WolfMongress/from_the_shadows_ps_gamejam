@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c83ev5p2gx8np"]
+[gd_scene load_steps=25 format=3 uid="uid://c83ev5p2gx8np"]
 
 [ext_resource type="PackedScene" uid="uid://csweymfv4kvk1" path="res://boss.tscn" id="1_gyqp6"]
 [ext_resource type="PackedScene" uid="uid://dqwdrmf7pnjwg" path="res://alchemia.tscn" id="2_b3pwu"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://plasma_bolt_projectile.gd" id="6_h223l"]
 [ext_resource type="Script" path="res://claw_strike_leap.gd" id="7_obfxi"]
 [ext_resource type="Script" path="res://mega_bottle_arc.gd" id="7_wvsbh"]
+[ext_resource type="Script" path="res://cloak_slap_dash.gd" id="8_27urb"]
+[ext_resource type="Script" path="res://supersonic_roar.gd" id="9_xot5g"]
+[ext_resource type="Script" path="res://body_slam_jump.gd" id="10_hl65o"]
 
 [sub_resource type="Curve2D" id="Curve2D_c6x4t"]
 _data = {
@@ -15,9 +18,6 @@ _data = {
 point_count = 3
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_duloe"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_cg8r8"]
-radius = 10.7831
 
 [sub_resource type="Curve2D" id="Curve2D_66y52"]
 _data = {
@@ -42,6 +42,32 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vkek5"]
+
+[sub_resource type="Curve2D" id="Curve2D_clsui"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 257, 506, 0, 0, 0, 0, 961, 506)
+}
+point_count = 2
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4o6gb"]
+
+[sub_resource type="Curve2D" id="Curve2D_e0p4y"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 257, 506, 0, 0, 0, 0, 962, 505)
+}
+point_count = 2
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xf6j6"]
+
+[sub_resource type="Curve2D" id="Curve2D_6mlhd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 257, 506, 0, 0, 0, 0, 257, 506, 0, 0, 0, 0, 259, 506, 0, 0, 0, 0, 1044, 179, 0, 0, 0, 0, 1046, 467)
+}
+point_count = 5
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_h3sux"]
+
 [node name="battle_scene" type="Node2D"]
 
 [node name="Timer" type="Timer" parent="."]
@@ -49,7 +75,7 @@ wait_time = 2.8
 one_shot = true
 
 [node name="Phase 2 Attack 1" type="Timer" parent="."]
-wait_time = 2.1
+wait_time = 1.4
 one_shot = true
 
 [node name="Phase 2 Attack 2" type="Timer" parent="."]
@@ -99,15 +125,10 @@ curve = SubResource("Curve2D_c6x4t")
 position = Vector2(511.755, 280.904)
 rotation = -2.66194
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Enemy Projectile/Path2D/PathFollow2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy Projectile/Path2D/PathFollow2D/StaticBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Enemy Projectile/Path2D/PathFollow2D"]
 position = Vector2(-0.0541992, -0.202515)
 scale = Vector2(22.041, 21.6632)
 texture = SubResource("PlaceholderTexture2D_duloe")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Projectile/Path2D/PathFollow2D/StaticBody2D"]
-shape = SubResource("CircleShape2D_cg8r8")
 
 [node name="Plasma Blast Projectile" type="Node2D" parent="." node_paths=PackedStringArray("projectile_timer")]
 visible = false
@@ -139,6 +160,7 @@ metadata/_edit_group_ = true
 
 [node name="Leap Timer" type="Timer" parent="Claw Strike Leap"]
 wait_time = 2.5
+one_shot = true
 
 [node name="Leap Strike Path" type="Path2D" parent="Claw Strike Leap"]
 scale = Vector2(0.953623, 1)
@@ -154,11 +176,14 @@ scale = Vector2(101, 150)
 texture = SubResource("PlaceholderTexture2D_uivlu")
 
 [node name="Mega Bottle Bottle" type="Node2D" parent="." node_paths=PackedStringArray("flight_timer")]
+visible = false
 script = ExtResource("7_wvsbh")
 flight_timer = NodePath("Mega Bottle Flight")
 metadata/_edit_group_ = true
 
 [node name="Mega Bottle Flight" type="Timer" parent="Mega Bottle Bottle"]
+wait_time = 4.2
+one_shot = true
 
 [node name="Mega Bottle Arc" type="Path2D" parent="Mega Bottle Bottle"]
 curve = SubResource("Curve2D_q12sh")
@@ -168,6 +193,69 @@ position = Vector2(223, 422)
 rotation = -0.506858
 
 [node name="Mega Bottle" type="Sprite2D" parent="Mega Bottle Bottle/Mega Bottle Arc/PathFollow2D"]
+scale = Vector2(30, 30)
+texture = SubResource("PlaceholderTexture2D_vkek5")
+
+[node name="Cloak Slap Dash" type="Node2D" parent="." node_paths=PackedStringArray("dash_timer")]
+visible = false
+script = ExtResource("8_27urb")
+dash_timer = NodePath("Cloak Slap Timer")
+metadata/_edit_group_ = true
+
+[node name="Cloak Slap Timer" type="Timer" parent="Cloak Slap Dash"]
+wait_time = 1.1
+one_shot = true
+
+[node name="Dash Path" type="Path2D" parent="Cloak Slap Dash"]
+curve = SubResource("Curve2D_clsui")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Cloak Slap Dash/Dash Path"]
+position = Vector2(257, 506)
+
+[node name="\'Alchemia\'" type="Sprite2D" parent="Cloak Slap Dash/Dash Path/PathFollow2D"]
+scale = Vector2(101, 150)
+texture = SubResource("PlaceholderTexture2D_4o6gb")
+
+[node name="Supersonic Roar" type="Node2D" parent="." node_paths=PackedStringArray("sound_timer")]
+visible = false
+script = ExtResource("9_xot5g")
+sound_timer = NodePath("Sound Speed")
+metadata/_edit_group_ = true
+
+[node name="Sound Speed" type="Timer" parent="Supersonic Roar"]
+wait_time = 0.9
+one_shot = true
+
+[node name="Sound Waves" type="Path2D" parent="Supersonic Roar"]
+curve = SubResource("Curve2D_e0p4y")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Supersonic Roar/Sound Waves"]
+position = Vector2(257, 506)
+rotation = -0.00141844
+
+[node name="Sprite2D" type="Sprite2D" parent="Supersonic Roar/Sound Waves/PathFollow2D"]
+scale = Vector2(50, 75)
+texture = SubResource("PlaceholderTexture2D_xf6j6")
+
+[node name="Body Slam Jump" type="Node2D" parent="." node_paths=PackedStringArray("jump_timer")]
+visible = false
+script = ExtResource("10_hl65o")
+jump_timer = NodePath("Jump Timer")
+metadata/_edit_group_ = true
+
+[node name="Jump Timer" type="Timer" parent="Body Slam Jump"]
+wait_time = 2.5
+one_shot = true
+
+[node name="Body Slam Arc" type="Path2D" parent="Body Slam Jump"]
+curve = SubResource("Curve2D_6mlhd")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Body Slam Jump/Body Slam Arc"]
+position = Vector2(256.875, 506)
+
+[node name="\'Alchemia\'" type="Sprite2D" parent="Body Slam Jump/Body Slam Arc/PathFollow2D"]
+scale = Vector2(101, 150)
+texture = SubResource("PlaceholderTexture2D_h3sux")
 
 [connection signal="timeout" from="Timer" to="Alchemia" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="Enemy Projectile" method="_on_timer_timeout"]
@@ -197,4 +285,11 @@ rotation = -0.506858
 [connection signal="timeout" from="Plasma Blast Projectile/Plasma Blast TImer" to="Plasma Blast Projectile" method="_on_plasma_blast_t_imer_timeout"]
 [connection signal="timeout" from="Claw Strike Leap/Leap Timer" to="boss" method="_on_leap_timer_timeout"]
 [connection signal="timeout" from="Claw Strike Leap/Leap Timer" to="Claw Strike Leap" method="_on_leap_timer_timeout"]
+[connection signal="timeout" from="Mega Bottle Bottle/Mega Bottle Flight" to="boss" method="_on_mega_bottle_flight_timeout"]
 [connection signal="timeout" from="Mega Bottle Bottle/Mega Bottle Flight" to="Mega Bottle Bottle" method="_on_mega_bottle_flight_timeout"]
+[connection signal="timeout" from="Cloak Slap Dash/Cloak Slap Timer" to="boss" method="_on_cloak_slap_timer_timeout"]
+[connection signal="timeout" from="Cloak Slap Dash/Cloak Slap Timer" to="Cloak Slap Dash" method="_on_cloak_slap_timer_timeout"]
+[connection signal="timeout" from="Supersonic Roar/Sound Speed" to="boss" method="_on_sound_speed_timeout"]
+[connection signal="timeout" from="Supersonic Roar/Sound Speed" to="Supersonic Roar" method="_on_sound_speed_timeout"]
+[connection signal="timeout" from="Body Slam Jump/Jump Timer" to="boss" method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="Body Slam Jump/Jump Timer" to="Body Slam Jump" method="_on_jump_timer_timeout"]

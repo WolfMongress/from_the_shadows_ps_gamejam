@@ -108,7 +108,7 @@ offset_left = 105.0
 offset_top = -17.0
 offset_right = 523.0
 offset_bottom = 48.0
-text = "Throws a massive concoction of potions which poisons anybody who gets hit and deals 25 dmg."
+text = "Throws a massive concoction of potions which poisons anybody who gets hit and deals 50 dmg."
 editable = false
 wrap_mode = 1
 
@@ -125,7 +125,7 @@ offset_left = 107.0
 offset_top = -16.0
 offset_right = 525.0
 offset_bottom = 50.0
-text = "Runs up to an enemy and slaps them with super heavy cloak dazing them and dealing 20 dmg."
+text = "Runs up to an enemy and slaps them with super heavy cloak dazing them and dealing 40 dmg."
 editable = false
 wrap_mode = 1
 
@@ -143,7 +143,7 @@ offset_left = 97.0
 offset_top = -4.0
 offset_right = 539.0
 offset_bottom = 60.0
-text = "Roars so inanely loudly that it blasts the eardrums of anybody who hears and dazes them. Deals 25 dmg."
+text = "Roars so inanely loudly that it blasts the eardrums of anybody who hears and dazes them. Deals 50 dmg."
 editable = false
 wrap_mode = 1
 
@@ -160,7 +160,7 @@ offset_left = 95.0
 offset_top = -19.0
 offset_right = 498.0
 offset_bottom = 44.0
-text = "Jumps up into the air and slams down on enemy dealing 50 - 60 dmg but causes you to be dazed."
+text = "Jumps up into the air and slams down on enemy dealing 60 - 100 dmg but causes you to be dazed."
 editable = false
 wrap_mode = 1
 
@@ -229,12 +229,16 @@ script = ExtResource("7_rd4oa")
 [connection signal="pressed" from="Primary UI/Attack/Transformation Submenu/Claw Strike" to="." method="_on_claw_strike_pressed"]
 [connection signal="mouse_entered" from="Primary UI/Attack/Transformation Submenu/Mega Bottle" to="Primary UI/Attack/Transformation Submenu/Mega Bottle" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Primary UI/Attack/Transformation Submenu/Mega Bottle" to="Primary UI/Attack/Transformation Submenu/Mega Bottle" method="_on_mouse_exited"]
+[connection signal="pressed" from="Primary UI/Attack/Transformation Submenu/Mega Bottle" to="." method="_on_mega_bottle_pressed"]
 [connection signal="mouse_entered" from="Primary UI/Attack/Transformation Submenu/Cloak Slap" to="Primary UI/Attack/Transformation Submenu/Cloak Slap" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Primary UI/Attack/Transformation Submenu/Cloak Slap" to="Primary UI/Attack/Transformation Submenu/Cloak Slap" method="_on_mouse_exited"]
+[connection signal="pressed" from="Primary UI/Attack/Transformation Submenu/Cloak Slap" to="." method="_on_cloak_slap_pressed"]
 [connection signal="mouse_entered" from="Primary UI/Attack/Transformation Submenu/Supersonic Roar" to="Primary UI/Attack/Transformation Submenu/Supersonic Roar" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Primary UI/Attack/Transformation Submenu/Supersonic Roar" to="Primary UI/Attack/Transformation Submenu/Supersonic Roar" method="_on_mouse_exited"]
+[connection signal="pressed" from="Primary UI/Attack/Transformation Submenu/Supersonic Roar" to="." method="_on_supersonic_roar_pressed"]
 [connection signal="mouse_entered" from="Primary UI/Attack/Transformation Submenu/Body Slam" to="Primary UI/Attack/Transformation Submenu/Body Slam" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Primary UI/Attack/Transformation Submenu/Body Slam" to="Primary UI/Attack/Transformation Submenu/Body Slam" method="_on_mouse_exited"]
+[connection signal="pressed" from="Primary UI/Attack/Transformation Submenu/Body Slam" to="." method="_on_body_slam_pressed"]
 [connection signal="pressed" from="Primary UI/Items" to="Primary UI/Attack" method="_on_items_pressed"]
 [connection signal="pressed" from="Primary UI/Items" to="Primary UI/Items/ItemList" method="_on_items_pressed"]
 [connection signal="pressed" from="Primary UI/Items" to="Primary UI/Alchemy" method="_on_items_pressed"]
