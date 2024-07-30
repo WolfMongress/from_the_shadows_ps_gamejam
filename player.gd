@@ -306,3 +306,26 @@ func _on_phase_2_attack_3_timeout():#third attack in second phase attacks
 	Global.player_ultra_shield = false
 	Global.player_shield = false
 	print(Global.player_health)
+
+func _on_boss_plasma_blast_t_imer_timeout():
+	# hit alchemia
+	pass # Replace with function body.
+
+func _on_leap_timer_timeout():
+	pass # Replace with function body.
+
+
+func _on_boss_mega_bottle_timer_timeout():
+	pass # Replace with function body.
+
+
+func _on_boss_cloak_slap_timer_timeout():
+	pass # Replace with function body.
+
+
+func _on_boss_sound_speed_timeout():
+	pass # Replace with function body.
+
+
+func _on_jump_timer_timeout():
+	pass # Replace with function body.
